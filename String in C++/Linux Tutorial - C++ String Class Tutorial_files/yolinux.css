@@ -1,0 +1,33 @@
+BODY {
+	COLOR: #000000; FONT-FAMILY: helvetica, arial, sans-serif; BACKGROUND-COLOR: #cccccc
+}
+TABLE.tmain {
+	BORDER-LEFT-COLOR: #000000; BORDER-BOTTOM-COLOR: #000000; WIDTH: 100%; BORDER-TOP-STYLE: solid; BORDER-TOP-COLOR: #000000; BORDER-RIGHT-STYLE: solid; BORDER-LEFT-STYLE: solid; BORDER-COLLAPSE: separate; BORDER-RIGHT-COLOR: #000000; BORDER-BOTTOM-STYLE: solid; border-spacing: 0 0
+}
+TD.tmain {
+	PADDING-RIGHT: 4px; PADDING-LEFT: 4px; BORDER-LEFT-COLOR: #000000; BORDER-BOTTOM-COLOR: #000000; PADDING-BOTTOM: 4px; MARGIN: 0px; BORDER-TOP-STYLE: solid; BORDER-TOP-COLOR: #000000; PADDING-TOP: 4px; BORDER-RIGHT-STYLE: solid; BORDER-LEFT-STYLE: solid; BORDER-RIGHT-COLOR: #000000; BORDER-BOTTOM-STYLE: solid
+}
+TH {
+	FONT-WEIGHT: bold; COLOR: #000000; FONT-FAMILY: helvetica, arial, sans-serif
+}
+TD {
+	COLOR: #000000; FONT-FAMILY: helvetica, arial, sans-serif
+}
+A:link {
+	COLOR: #0000ff; FONT-FAMILY: Helvetica, Arial, sans-serif; TEXT-DECORATION: none
+}
+A:visited {
+	COLOR: #0000cc; FONT-FAMILY: Helvetica, Arial, sans-serif; TEXT-DECORATION: none
+}
+A:active {
+	FONT-WEIGHT: bold; COLOR: #0000ff; FONT-FAMILY: Helvetica, Arial, sans-serif; TEXT-DECORATION: none
+}
+A:hover {
+	COLOR: #0000aa; FONT-FAMILY: Helvetica, Arial, sans-serif; TEXT-DECORATION: underline
+}
+.text {
+	COLOR: #000000; FONT-FAMILY: helvetica, arial, sans-serif
+}
+.textbold {
+	FONT-WEIGHT: bold; COLOR: #000000; FONT-FAMILY: helvetica, arial, sans-serif
+}

@@ -1,0 +1,741 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<!-- saved from url=(0065)http://www.yolinux.com/TUTORIALS/LinuxTutorialC++StringClass.html -->
+<HTML xmlns="http://www.w3.org/1999/xhtml"><HEAD><TITLE>Linux Tutorial: - C++ String Class Tutorial</TITLE><LINK 
+href="Linux Tutorial - C++ String Class Tutorial_files/yolinux.css" 
+type=text/css rel=stylesheet><LINK 
+href='”http://www.yolinux.com/TUTORIALS/LinuxTutorialC++StringClass.html"' 
+rel=”canonical”>
+<META http-equiv=Content-Type content="text/html; charset=utf-8">
+<META 
+content="String Class,Standard Template Library,class,object,C++,Tutorial,examples,info,linux" 
+name=keywords>
+<META 
+content="ANSI C++ GNU String class tutorial and examples. YoLinux: Linux Information Portal includes informative tutorials and links to many Linux sites." 
+name=description>
+<META content="Greg Ippolito" name=author>
+<META content="MSHTML 6.00.2800.1625" name=GENERATOR></HEAD>
+<BODY text=#000000 bgColor=#cccccc>
+<HR SIZE=5>
+
+<TABLE cellPadding=4 width="100%">
+  <TBODY>
+  <TR>
+    <TD vAlign=top><A href="http://www.yolinux.com/"><IMG 
+      alt="Yolinux.com Linux logo" 
+      src="Linux Tutorial - C++ String Class Tutorial_files/YoLinux_Tutorial_logo.png" 
+      border=none></A> </TD>
+    <TD vAlign=top>
+      <H1>C++ String class Examples and Tutorial</H1>
+      <P>C++ may use the C string functions but they rely on a null termination 
+      and proper memory allocation to hold the string. The ANSI C++ GNU string 
+      classes included in the C++ standard library attempt to simplify string 
+      manipulation by automating much of the memory allocation and management. 
+      Included in this tutorial are examples of the string classes included with 
+      the GNU g++ compiler on Linux. This string class is cross platform and 
+      included with both Unix/Linux ANSI and Microsoft Visual C++ compilers. 
+      Because it is standard with cross platform availability, the "string" 
+      class is preferred over the Microsoft MFC "String" class. 
+  </P></TD></TR></TBODY></TABLE>
+<DIV align=right><!-- BEGIN RICH-MEDIA BURST! CODE -->
+<SCRIPT type=text/javascript><!--
+google_ad_client = "pub-8567479315106986";
+google_ad_width = 728;
+google_ad_height = 90;
+google_ad_format = "728x90_as";
+google_ad_type = "text_image";
+google_ad_channel ="";
+google_color_border = "FFFFFF";
+google_color_bg = "cccccc";
+google_color_link = "0000FF";
+google_color_text = "000000";
+google_color_url = "008000";
+//--></SCRIPT>
+
+<SCRIPT src="Linux Tutorial - C++ String Class Tutorial_files/show_ads.js" 
+type=text/javascript>
+</SCRIPT>
+<!-- END BURST CODE --></DIV>
+<P></P>
+<HR SIZE=5>
+
+<TABLE cellSpacing=1 cellPadding=4 width="100%" bgColor=#000000 border=1>
+  <TBODY>
+  <TR bgColor=#cccccc>
+    <TD vAlign=top width=160 bgColor=#c0c0c0>
+      <P><FONT size=-1><B>Related YoLinux Tutorials:</B> </FONT></P>
+      <P><FONT size=-1>°<A 
+      href="http://www.yolinux.com/TUTORIALS/LinuxTutorialC++STL.html">C++ STL 
+      tutorial</A> </FONT></P>
+      <P><FONT size=-1>°<A 
+      href="http://www.yolinux.com/TUTORIALS/LinuxTutorialC++.html">C++ Info, 
+      links</A> </FONT></P>
+      <P><FONT size=-1>°<A 
+      href="http://www.yolinux.com/TUTORIALS/LinuxTutorialSoftwareDevelopment.html">Software 
+      development tools</A> </FONT></P>
+      <P><FONT size=-1>°<A 
+      href="http://www.yolinux.com/TUTORIALS/LinuxTutorialC++CodingStyle.html">C++ 
+      Coding Style</A> </FONT></P>
+      <P><FONT size=-1>°<A 
+      href="http://www.yolinux.com/TUTORIALS/LinuxTutorialXemacs.html">Emacs and 
+      C/C++</A> </FONT></P>
+      <P><FONT size=-1>°<A 
+      href="http://www.yolinux.com/TUTORIALS/MicrosoftVisualC++Tips.html">MS/Visual 
+      C++ tips and best practices</A> </FONT></P>
+      <P><FONT size=-1>°<A 
+      href="http://www.yolinux.com/TUTORIALS/index.html">YoLinux Tutorials 
+      Index</A> </FONT></P>
+      <P></P>
+      <HR>
+
+      <P>
+      <SCRIPT type=text/javascript><!--
+   e9 = new Object();
+   e9.size = "160x600";
+   e9.addBlockingCategories="Flashing,Pop-under,Pop-up,Floating,Full-page,Survey";
+   e9.noAd = 1;
+//--></SCRIPT>
+
+      <SCRIPT src="Linux Tutorial - C++ String Class Tutorial_files/tags.js" 
+      type=text/javascript></SCRIPT>
+      </P>
+      <P></P>
+      <HR>
+
+      <P><A href="http://yolinux.tradepub.com/">Free Information Technology 
+      Magazine Subscriptions and Document Downloads</A> </P>
+      <P></P>
+      <HR>
+
+      <P><A href="http://yolinux.tradepub.com/?pt=cat&amp;page=Infosoft">Free 
+      Information Technology <B>Software and Development</B> Magazine 
+      Subscriptions and Document Downloads</A> </P>
+      <P></P>
+      <HR>
+
+      <P></P></TD>
+    <TD>
+      <P></P>
+      <TABLE cellSpacing=0 cellPadding=2 width="100%" border=0>
+        <TBODY>
+        <TR bgColor=#ffcc33>
+          <TD><B><BIG>String class example:</BIG></B></TD></TR></TBODY></TABLE>
+      <P>Simple example of a program using string class: </P>
+      <P></P>
+      <DL>
+        <DD>
+        <TABLE cellSpacing=1 cellPadding=4 width="100%" bgColor=#000000 
+border=1>
+          <TBODY>
+          <TR bgColor=#c0c0c0>
+            <TD><PRE>#include &lt;string&gt;<BR>#include &lt;iostream&gt;<BR><BR>using namespace std;<BR><BR>main()<BR>{<BR>   string a("abcd efg");<BR>   string b("xyz ijk");<BR>   string c;<BR><BR>   cout &lt;&lt; a &lt;&lt; " " &lt;&lt; b &lt;&lt; endl;                        // Output: abcd efg xyz ijk<BR><BR>   cout &lt;&lt; "String empty: "    &lt;&lt; c.empty()    &lt;&lt; endl;  // String empty: 1 <BR>                                                         // Is string empty? Yes it is empty. (TRUE)<BR>   c = a + b;                                            // concatenation<BR>   cout &lt;&lt; c &lt;&lt; endl;                                    // abcd efgxyz ijk<BR>   cout &lt;&lt; "String length: "   &lt;&lt; c.length()   &lt;&lt; endl;  // String length: 15<BR>   cout &lt;&lt; "String size: "     &lt;&lt; c.size()     &lt;&lt; endl;  // String size: 15<BR>   cout &lt;&lt; "String capacity: " &lt;&lt; c.capacity() &lt;&lt; endl;  // String capacity: 15<BR>   cout &lt;&lt; "String empty: "    &lt;&lt; c.empty()    &lt;&lt; endl;  // String empty: 0 <BR>                                                         // Is string empty? No it is NOT empty. (FALSE)<BR>   string d = c;<BR>   cout &lt;&lt; d &lt;&lt; endl;                                    // abcd efgxyz ijk<BR><BR>                                                         // First character: a<BR>   cout &lt;&lt; "First character: " &lt;&lt; c[0] &lt;&lt; endl;          // Strings start with index 0 just like C.<BR><BR>   string f("    Leading and trailing blanks      ");<BR>   cout &lt;&lt; "String f:" &lt;&lt; f &lt;&lt; endl;<BR>   cout &lt;&lt; "String length: " &lt;&lt; f.length() &lt;&lt; endl;      // String length: 37<BR>   cout &lt;&lt; "String f:" &lt;&lt; f.append("ZZZ") &lt;&lt; endl;       // String f:    Leading and trailing blanks      ZZZ<BR>   cout &lt;&lt; "String length: " &lt;&lt; f.length() &lt;&lt; endl;      // String length: 40<BR><BR>   string g("abc abc abd abc");<BR>   cout &lt;&lt; "String g: " &lt;&lt; g &lt;&lt; endl;                    // String g: abc abc abd abc<BR>   cout &lt;&lt; "Replace 12,1,\"xyz\",3: " &lt;&lt; g.replace(12,1,"xyz",3) &lt;&lt; endl;  // Replace 12,1,"xyz",3: abc abc abd xyzbc<BR>   cout &lt;&lt; g.replace(0,3,"xyz",3) &lt;&lt; endl;               // xyz abc abd xyzbc<BR>   cout &lt;&lt; g.replace(4,3,"xyz",3) &lt;&lt; endl;               // xyz xyz abd xyzbc<BR>   cout &lt;&lt; g.replace(4,3,"ijk",1) &lt;&lt; endl;               // xyz i abd xyzbc<BR>   cout &lt;&lt; "Find: " &lt;&lt; g.find("abd",1) &lt;&lt; endl;          // Find: 6<BR>   cout &lt;&lt; g.find("qrs",1) &lt;&lt; endl;<BR><BR>   string h("abc abc abd abc");<BR>   cout &lt;&lt; "String h: " &lt;&lt; h &lt;&lt; endl;<BR>   cout &lt;&lt; "Find \"abc\",0: " &lt;&lt; h.find("abc",0) &lt;&lt; endl; // Find "abc",0: 0<BR>   cout &lt;&lt; "Find \"abc\",1: " &lt;&lt; h.find("abc",1) &lt;&lt; endl; // Find "abc",1: 4<BR>   cout &lt;&lt; "Find_first_of \"abc\",0: " &lt;&lt; h.find_first_of("abc",0) &lt;&lt; endl; // Find_first_of "abc",0: 0<BR>   cout &lt;&lt; "Find_last_of \"abc\",0: " &lt;&lt; h.find_last_of("abc",0) &lt;&lt; endl;   // Find_last_of "abc",0: 0<BR>   cout &lt;&lt; "Find_first_not_of \"abc\",0: " &lt;&lt; h.find_first_not_of("abc",0) &lt;&lt; endl;  // Find_first_not_of "abc",0: 3<BR>   cout &lt;&lt; "Find_first_not_of \" \": " &lt;&lt; h.find_first_not_of(" ") &lt;&lt; endl;  // Find_first_not_of " ": 0<BR>   cout &lt;&lt; "Substr 5,9: " &lt;&lt; h.substr(5,9) &lt;&lt; endl;       // Substr 5,9: bc abd ab<BR>   cout &lt;&lt; "Compare 0,3,\"abc\": " &lt;&lt; h.compare(0,3,"abc") &lt;&lt; endl;  // Compare 0,3,"abc": 0<BR>   cout &lt;&lt; "Compare 0,3,\"abd\": " &lt;&lt; h.compare(0,3,"abd") &lt;&lt; endl;  // Compare 0,3,"abd": -1<BR>   cout &lt;&lt; h.assign("xyz",0,3) &lt;&lt; endl;                   // xyz<BR>   cout &lt;&lt; "First character: " &lt;&lt; h[0] &lt;&lt; endl; // Strings start with 0 // First character: x<BR><BR><BR>}<BR><BR></PRE></TD></TR></TBODY></TABLE></DD></DL>
+      <P></P>
+      <HR>
+
+      <P>Compile: <TT>g++ program.cpp</TT> </P>
+      <P><FONT color=#ff0000>[Potential Pitfall]</FONT>: In Red Hat Linux 
+      versions 7.x one could omit the "<TT>using namespace std;</TT>" statement. 
+      Use of this statement is good programming practice and is required in Red 
+      Hat 8.0. </P>
+      <P><FONT color=#ff0000>[Potential Pitfall]</FONT>: Red Hat 8.0 requires 
+      the reference to "<TT>#include &lt;iostream&gt;</TT>". Red Hat versions 
+      7.x used "<TT>#include &lt;iostream.h&gt;</TT>". (Also fstream, ...) </P>
+      <P></P>
+      <HR>
+
+      <P></P>
+      <TABLE width="100%">
+        <TBODY>
+        <TR bgColor=#c0c0c0>
+          <TD></TD>
+          <TD vAlign=top>Output: <TT>./a.out</TT> 
+            <DL>
+              <DD><PRE>abcd efg xyz ijk<BR>String empty: 1<BR>abcd efgxyz ijk<BR>String length: 15<BR>String size: 15<BR>String capacity: 15<BR>String empty: 0<BR>abcd efgxyz ijk<BR>First character: a<BR>String f:    Leading and trailing blanks      <BR>String length: 37<BR>String f:    Leading and trailing blanks      ZZZ<BR>String length: 40<BR>String g: abc abc abd abc<BR>Replace 12,1,"xyz",3: abc abc abd xyzbc<BR>xyz abc abd xyzbc<BR>xyz xyz abd xyzbc<BR>xyz i abd xyzbc<BR>Find: 6<BR>4294967295<BR>String h: abc abc abd abc<BR>Find "abc",0: 0<BR>Find "abc",1: 4<BR>Find_first_of "abc",0: 0<BR>Find_last_of "abc",0: 0<BR>Find_first_not_of "abc",0: 3<BR>Find_first_not_of " ": 0<BR>Substr 5,9: bc abd ab<BR>Compare 0,3,"abc": 0<BR>Compare 0,3,"abd": -1<BR>xyz<BR>First character: x<BR><BR></PRE></DD></DL></TD>
+          <TD vAlign=top align=right>
+            <SCRIPT type=text/javascript><!--
+google_ad_client = "pub-8567479315106986";
+google_ad_width = 300;
+google_ad_height = 250;
+google_ad_format = "300x250_as";
+google_cpa_choice = "CAEQABAAEAAQABoIG2QoZZR52Mwo1PCgogIowLnzpgIonavOygEokrSPowE";
+google_color_border = "CCCCCC";
+google_color_bg = "CCCCCC";
+google_color_link = "000000";
+google_color_text = "333333";
+google_color_url = "666666";
+//-->
+            </SCRIPT>
+
+            <SCRIPT 
+            src="Linux Tutorial - C++ String Class Tutorial_files/show_ads.js" 
+            type=text/javascript>
+            </SCRIPT>
+          </TD></TR></TBODY></TABLE><FONT color=#ff0000>[Potential Pitfall]</FONT>: 
+      There have been some changes in the behavior of the string class from Red 
+      Hat 7.x to Red Hat 8.0: 
+      <UL>
+        <LI>The compare function arguments have changed from 
+        <TT>X.compare("string",int-1, int-2);</TT> to <TT>X.compare(int-1, 
+        int-2, "string");</TT> 
+        <LI>The return value of the compare function call 
+        <TT>h.compare("abc",0,3)</TT> in 7.x was 12. In Red Hat 8.0 
+        <TT>h.compare(0,3,"abc")</TT> it is 0. 
+        <LI>String capacity function call "<TT>c.capacity()</TT>" is 15. The 
+        returned value in Red Hat 7.x was 16. </LI></UL>
+      <P></P>
+      <HR SIZE=5>
+
+      <TABLE cellSpacing=0 cellPadding=2 width="100%" border=0>
+        <TBODY>
+        <TR bgColor=#ffcc33>
+          <TD><B><BIG>String class functions:</BIG></B></TD></TR></TBODY></TABLE>
+      <P></P>
+      <UL>
+        <LI>Constructors: <PRE>    string sVar1("abc");<BR>    string sVar1(<I>C-string</I>);<BR>    string sVar2(10," ");  // Generate string initialized to 10 blanks.<BR>    string sVar3(Var1,<I>string-index</I>);  // Initialize with characters from string starting with index <I>string-index</I>.<BR>    string sVar4(<I>iterator-index-begin, iterator-index-end</I>)<BR>    </PRE>
+        <LI>Destructor: <PRE>    Var.~string();         // Destructor<BR>    </PRE>
+        <LI>Replace: 
+        <UL>
+          <LI>Var.replace(<I>beginning,end-position,string-class-variable</I>) 
+          <LI>Var.replace(<I>beginning,end-position,C-char-variable</I>) 
+          <LI>Var.replace(<I>beginning,end-position,string-class-variable,length</I>) 
+
+          <LI>Var.replace(<I>beginning,end-position,integer-number,single-char</I>) 
+
+          <LI>Var.replace(<I>beginning,end-position,new-beginning-porition,new-end-position</I>) 
+          </LI></UL>
+        <P>Code samples: </P><PRE>       string g("abc abc abd abc");<BR>       cout &lt;&lt; g.replace(4,1,"ijk",3) &lt;&lt; endl;<BR><BR>       string h("abc abc abd abc");<BR>       cout &lt;&lt; h.replace(4,6,"ijk",3) &lt;&lt; endl;<BR><BR>       string k("abc abc abd abc");<BR>       cout &lt;&lt; k.replace(4,3,"ijk",3) &lt;&lt; endl;<BR> <BR>       string l("abc abc abd abc");<BR>       cout &lt;&lt; k.replace(12,1,"xyz",3) &lt;&lt; endl;<BR>    </PRE>Output: 
+<PRE>    abc ijkbc abd abc       <B><I>- Beginning with the 4th index (character number 5) replace one character with 3 characters from string "ijk"</I></B>
+    abc ijkd abc
+    abc ijk abd abc
+    abc abc abd xyzbc
+    </PRE>
+        <LI>Find: (also rfind(), find_first_of(), find_last_of(), 
+        find_first_not_of(), find_last_not_of()) 
+        <P>Arguments/parameters: </P>
+        <UL>
+          <LI><TT>Val.find(const string&amp; <I>argument</I>) </TT><BR>Find 
+          first occurence of <I>argument</I> within <TT>string Val</TT> 
+          <LI>find(const string&amp; <I>argument</I>, size_type <I>index</I>) 
+          <BR>Find first occurence of <I>argument</I> within <TT>string Val</TT> 
+          starting search from position <I>index</I>. 
+          <LI>find(const char* <I>argument</I>) 
+          <LI>find(const char* <I>argument</I>, size_type <I>index</I>) 
+          <LI>find(const char* <I>argument</I>, size_type <I>index</I>, 
+          size_type <I>length</I>) <BR>Find first occurence of <I>argument</I> 
+          within <TT>string Val</TT> starting search from position <I>index</I> 
+          and search for <I>length</I> number of characters. </LI></UL></LI></UL>
+      <P></P>
+      <HR>
+
+      <P></P>
+      <H4>STL C++ string functions:</H4>Assuming declaration: <TT>string 
+      Var;</TT> 
+      <DL>
+        <DD>
+        <TABLE border=1>
+          <TBODY>
+          <TR bgColor=silver>
+            <TH>Function/Operation</TH>
+            <TH>Description</TH></TR>
+          <TR>
+            <TD vAlign=top>Var = 
+              <I>string2</I><BR>Var.assign("<I>string-to-assign</I>")</TD>
+            <TD>Assignment of value to string. When assigning a C "char" data 
+              type, first check if NULL to avoid failure/crash.<BR>i.e.: <TT>if( 
+              szVar ) sVar.assign( szVar );</TT><BR>where szVar is a C "char *" 
+              data type and sVar is of type "string".</TD></TR>
+          <TR>
+            <TD>Var.swap(<I>string2</I>)<BR>swap(<I>string1,string2</I>)</TD>
+            <TD>Swap with value held in string2.<BR>Function swap will 
+              exchange contents of two string class variables.</TD></TR>
+          <TR>
+            <TD>Var += <I>string2</I><BR>Var.append()<BR>Var.push_back()</TD>
+            <TD>Append string/characters.</TD></TR>
+          <TR>
+            <TD>Var.insert()</TD>
+            <TD>Insert characters</TD></TR>
+          <TR>
+            <TD>Var.erase()<BR>Var = ""</TD>
+            <TD>Clear string variable. No arguments necessary.</TD></TR>
+          <TR>
+            <TD>+</TD>
+            <TD>Concatenate</TD></TR>
+          <TR>
+            <TD>==, !=, &lt;, &lt;=, &gt;, &gt;=</TD>
+            <TD>Compare strings.</TD></TR>
+          <TR>
+            <TD vAlign=top>Var.compare(<I>string</I>)<BR>Var.compare( size_t 
+              pos1, size_t len, <I>string</I> ) const;<BR>Var.compare( size_t 
+              pos1, size_t len1, const <I>string</I>, size_t pos2, size_t len2 ) 
+              const;</TD>
+            <TD vAlign=top>Compare strings. Returns int:
+              <UL>
+                <LI>0: if equal.
+                <LI>-1: Not equal. 1st non matching character in Var is less in 
+                value based on ASCII table than in compare string.
+                <LI>+1: Not equal. 1st non matching character is greater in 
+                value based on ASCII table.</LI></UL>Where <I>string</I> is 
+              another STL string or null terminated C string.</TD></TR>
+          <TR>
+            <TD vAlign=top>Var.length()</TD>
+            <TD>Return length of string. No arguments necessary. The methods 
+              <TT>length(), size()</TT> and <TT>capacity()</TT> all return the 
+              same value.</TD></TR>
+          <TR>
+            <TD>Var.size()</TD>
+            <TD>Return length of string. No arguments necessary.</TD></TR>
+          <TR>
+            <TD vAlign=top>Var.capacity()</TD>
+            <TD>Return length of string + 1. Red Hat 7.x. Red Hat 8.0+ returns 
+              the number of characters without the "+1". Number of characters 
+              that can be held without re-allocation. <BR>No arguments 
+            necessary.</TD></TR>
+          <TR>
+            <TD>Var.max_size()</TD>
+            <TD>Returns a very large number. No arguments necessary.</TD></TR>
+          <TR>
+            <TD vAlign=top>Var.empty()</TD>
+            <TD>Returns 1 if an empty string.<BR>Returns 0 if not empty.</TD></TR>
+          <TR>
+            <TD>&lt;&lt;</TD>
+            <TD>Output stream</TD></TR>
+          <TR>
+            <TD>&gt;&gt;<BR>getline()</TD>
+            <TD>Input stream</TD></TR>
+          <TR>
+            <TD vAlign=top>Var.c_str()</TD>
+            <TD>Returns C string pointer. C char string is null terminated. Do 
+              not free memory using this pointer!</TD></TR>
+          <TR>
+            <TD vAlign=top>Var.data()</TD>
+            <TD>Returns C string pointer. C char string is NOT null 
+              terminated. Do not free memory using this pointer!</TD></TR>
+          <TR>
+            <TD>Var[]<BR>Var.at(<I>integer</I>)</TD>
+            <TD>Access individual characters. Return single character at 
+              specified position (integer).</TD></TR>
+          <TR>
+            <TD vAlign=top>Var.find(<I>string</I>)<BR>Var.find(<I>string, 
+              positionFirstChar</I>)<BR>Var.find(<I>string, positionFirstChar, 
+              len</I>)</TD>
+            <TD vAlign=top>Find first occurance of string or substring. 
+              Returns int position of first occurance in string. Where 
+              <TT>len</TT> is the length of the sequence to search for. 
+              <BR>Returns <TT>string::npos</TT> if not found. <BR>i.e. 
+              <TT>if(Var.find("abc") == string::npos) cout &lt;&lt; "Not found" 
+              &lt;&lt; endl;</TT></TD></TR>
+          <TR>
+            <TD vAlign=top>Var.rfind()</TD>
+            <TD vAlign=top>Find last occurance of string or substring.</TD></TR>
+          <TR>
+            <TD vAlign=top>Var.find_first_of(<I>string</I>, 
+              position)<BR>Var.find_first_of( <I>string</I>, size_t position, 
+              size_t len )</TD>
+            <TD>Find strings and substrings.<BR>Where <I>string</I> is another 
+              STL string or null terminated C string.<BR>If <TT>position</TT> = 
+              0, than start at beginning of string.</TD></TR>
+          <TR>
+            <TD>Var.find_last_of()</TD>
+            <TD>Find strings and substrings.</TD></TR>
+          <TR>
+            <TD>Var.find_first_not_of()<BR>Var.find_last_not_of()</TD>
+            <TD>Find strings and substrings.</TD></TR>
+          <TR>
+            <TD vAlign=top>Var.replace(pos1, len1, 
+              <I>string</I>)<BR>Var.replace(itterator1, itterator2, const 
+              <I>string</I>)<BR>Var.replace(pos1, len1, <I>string</I>, pos2, 
+              len2)</TD>
+            <TD vAlign=top>Replace section of string with new characters. 
+              <BR>pos2 and len2 are given when using only a substring of 
+              <I>string</I>. Where <I>string</I> is another STL string or null 
+              terminated C string.</TD></TR>
+          <TR>
+            <TD>Var.substr(pos, len)</TD>
+            <TD>Return substring of text given a start position in string 
+              object and length.</TD></TR>
+          <TR>
+            <TD>Var.begin()<BR>Var.end()</TD>
+            <TD>Iterators</TD></TR>
+          <TR>
+            <TD>Var.rbegin()<BR>Var.rend()</TD>
+            <TD>Reverse iterators</TD></TR></TBODY></TABLE></DD></DL>
+      <P>Note that in most cases the string functions have been overloaded to 
+      accept both string class arguments and C char variables. </P>
+      <P></P>
+      <HR SIZE=5>
+
+      <TABLE cellSpacing=0 cellPadding=2 width="100%" border=0>
+        <TBODY>
+        <TR bgColor=#ffcc33>
+          <TD><B><BIG>ANSI C++ string class 
+      iterators:</BIG></B></TD></TR></TBODY></TABLE>
+      <P>Iterators provide the ability to access the individual characters in a 
+      string. </P>
+      <DL>
+        <DD>
+        <TABLE cellSpacing=1 cellPadding=4 width="100%" bgColor=#000000 
+border=1>
+          <TBODY>
+          <TR bgColor=#c0c0c0>
+            <TD><PRE>#include &lt;iostream&gt;<BR>#include &lt;string&gt;<BR>using namespace std;<BR>   <BR>int main()<BR>{<BR>   string alphabetLC="abcdefghijklmnopqrstuvwxyz";<BR><BR>   string::const_iterator cii;<BR>   int ii;<BR><BR>   for(cii=alphabetLC.begin(); cii!=alphabetLC.end(); cii++)<BR>   {<BR>      cout &lt;&lt; ii++ &lt;&lt; " " &lt;&lt; *cii &lt;&lt; endl;<BR>   }<BR>}<BR></PRE></TD></TR></TBODY></TABLE>This 
+        will print the integer position in the string followed by the letter for 
+        all characters in the alphabet. 
+        <TABLE cellSpacing=1 cellPadding=4 width="100%" bgColor=#000000 
+border=1>
+          <TBODY>
+          <TR bgColor=#c0c0c0>
+            <TD><PRE>0 a<BR>1 b<BR>2 c<BR>3 d<BR>4 e<BR>5 f<BR>6 g<BR>7 h<BR>...<BR>..<BR></PRE></TD></TR></TBODY></TABLE></DD></DL>
+      <P></P>
+      <HR>
+
+      <P></P>
+      <H4>Iterator types:</H4>
+      <UL>
+        <LI>string::traits_type 
+        <LI>string::value_type 
+        <LI>string::size_type 
+        <LI>string::difference_type 
+        <LI>string::reference 
+        <LI>string::const_reference 
+        <LI>string::pointer 
+        <LI>string::const_pointer 
+        <LI>string::iterator 
+        <LI>string::const_iterator 
+        <LI>string::reverse_iterator 
+        <LI>string::const_reverse_iterator 
+        <LI>string::npos </LI></UL>
+      <P></P>
+      <HR SIZE=5>
+
+      <TABLE cellSpacing=0 cellPadding=2 width="100%" border=0>
+        <TBODY>
+        <TR bgColor=#ffcc33>
+          <TD><B><BIG>ANSI C++ string class and the C standard 
+            library:</BIG></B></TD></TR></TBODY></TABLE>
+      <P>The full use of the C standard library is available for use by 
+      utilizing the ".c_str" function return of the string class. </P>
+      <P></P>
+      <DL>
+        <DD>
+        <TABLE cellSpacing=1 cellPadding=4 width="100%" bgColor=#000000 
+border=1>
+          <TBODY>
+          <TR bgColor=#c0c0c0>
+            <TD><PRE>#include &lt;strings.h&gt;<BR>#include &lt;string&gt;<BR>#include &lt;stdio.h&gt;<BR>using namespace std;<BR>   <BR>int main()<BR>{<BR>   char *phrase1="phrase";<BR>   string phrase2("Second phrase");<BR>   char  phraseA[128];<BR>   char  *phraseB;<BR>   <BR>   strcpy(phraseA,phrase2.c_str()); <BR>   phraseB = strstr(phrase2.c_str(),phrase1);<BR><BR>   printf("phraseA: %s\n",phraseA);<BR>   printf("phraseB: %s\n",phraseB);<BR>   printf("phrase2: %s\n",phrase2.c_str());<BR>}   <BR></PRE></TD></TR></TBODY></TABLE></DD></DL>
+      <P>Compile and run: </P>
+      <DL>
+        <DD>
+        <TABLE cellSpacing=1 cellPadding=4 width="100%" bgColor=#000000 
+border=1>
+          <TBODY>
+          <TR bgColor=#c0c0c0>
+            <TD><PRE><B>[prompt]$</B> g++ test.cpp<BR><B>[prompt]$</B> ./a.out<BR>phraseA: Second phrase<BR>phraseB: phrase<BR>phrase2: Second phrase<BR></PRE></TD></TR></TBODY></TABLE></DD></DL>
+      <P></P>
+      <HR SIZE=5>
+
+      <TABLE>
+        <TBODY>
+        <TR>
+          <TD vAlign=top width="50%">
+            <TABLE cellSpacing=0 cellPadding=2 width="100%" border=0>
+              <TBODY>
+              <TR bgColor=#ffcc33>
+                <TD><B><BIG>Using ostringstream and an internal 
+                  write:</BIG></B></TD></TR></TBODY></TABLE>
+            <P>In memory I/O string processing used as a data type conversion. 
+            This can also be used to make use of formatting of output in memory. 
+            </P>
+            <P>File: <TT>int2string.cpp</TT> </P>
+            <DL>
+              <DD>
+              <TABLE cellSpacing=1 cellPadding=4 width="100%" bgColor=#000000 
+              border=1>
+                <TBODY>
+                <TR bgColor=#c0c0c0>
+                  <TD><PRE>#include &lt;iostream&gt;<BR>#include &lt;sstream&gt;<BR>#include &lt;string&gt;<BR>using namespace std;<BR> <BR>string int2string(const int&amp; number)<BR>{<BR>   ostringstream oss;<BR>   oss &lt;&lt; number;<BR>   return oss.str();<BR>}<BR> <BR>main()<BR>{<BR>   int number=7878;<BR>   string test="SSSSS";<BR>   test += int2string(number);<BR>   cout &lt;&lt; test &lt;&lt; endl;<BR>}<BR>    </PRE></TD></TR></TBODY></TABLE></DD></DL>Compile 
+            and run: 
+            <DL>
+              <DD>
+              <TABLE cellSpacing=1 cellPadding=4 width="100%" bgColor=#000000 
+              border=1>
+                <TBODY>
+                <TR bgColor=#c0c0c0>
+                  <TD><PRE>    <B>[prompt]$</B> g++ int2string.cpp<BR>    <B>[prompt]$</B> a.out<BR>    SSSSS7878<BR>    </PRE></TD></TR></TBODY></TABLE></DD></DL><FONT 
+            color=#ff0000>[Potential Pitfall]</FONT>: Returned string value must 
+            be used right away without other memory being set as string 
+            destructor will free the memory associated with its contents. It is 
+            much safer for the function to return a <TT>char</TT> data type or 
+            pass the string reference as an argument. </TD>
+          <TD vAlign=top width="50%">
+            <TABLE cellSpacing=0 cellPadding=2 width="100%" border=0>
+              <TBODY>
+              <TR bgColor=#ffcc33>
+                <TD><B><BIG>Using istringstream and an internal 
+                read:</BIG></B></TD></TR></TBODY></TABLE>
+            <P>This is used to make use of reading and parsing a string in 
+            memory. It will also allow data type conversion from a string to the 
+            type read. </P>
+            <P>File: <TT>test.cpp</TT> </P>
+            <DL>
+              <DD>
+              <TABLE cellSpacing=1 cellPadding=4 width="100%" bgColor=#000000 
+              border=1>
+                <TBODY>
+                <TR bgColor=#c0c0c0>
+                  <TD><PRE>#include &lt;iostream&gt;<BR>#include &lt;sstream&gt;<BR>#include &lt;string&gt;<BR>using namespace std;<BR> <BR>main()<BR>{<BR>   string test="AAA 123 SSSSS 3.141592654";<BR>   istringstream totalSString( test );<BR>   string string1, string2;<BR>   int    integer1;<BR>   double PI;<BR><BR>   totalSString &gt;&gt; string1 &gt;&gt; integer1 &gt;&gt; string2 &gt;&gt; PI;<BR>   <BR>   cout &lt;&lt; "Individual parsed variables:" &lt;&lt; endl;<BR>   cout &lt;&lt; "First string:  " &lt;&lt; string1   &lt;&lt; endl;<BR>   cout &lt;&lt; "First integer: " &lt;&lt; integer1  &lt;&lt; endl;<BR>   cout &lt;&lt; "Value of PI:   " &lt;&lt; PI        &lt;&lt; endl;<BR>}<BR>    </PRE></TD></TR></TBODY></TABLE></DD></DL>Compile 
+            and run: 
+            <DL>
+              <DD>
+              <TABLE cellSpacing=1 cellPadding=4 width="100%" bgColor=#000000 
+              border=1>
+                <TBODY>
+                <TR bgColor=#c0c0c0>
+                  <TD><PRE>    <B>[prompt]$</B> g++ test.cpp<BR>    <B>[prompt]$</B> a.out<BR>    Individual parsed variables:<BR>    First string:  AAA<BR>    First integer: 123<BR>    Value of PI:   3.14159<BR>    </PRE></TD></TR></TBODY></TABLE></DD></DL></TD></TR></TBODY></TABLE>
+      <P></P>
+      <HR SIZE=5>
+
+      <TABLE cellSpacing=0 cellPadding=2 width="100%" border=0>
+        <TBODY>
+        <TR bgColor=#ffcc33>
+          <TD><B><BIG>Code snipets:</BIG></B></TD></TR></TBODY></TABLE>
+      <P></P>
+      <UL>
+        <LI><B>Read lines from standard input:</B> 
+        <TABLE cellSpacing=1 cellPadding=4 width="100%" bgColor=#000000 
+border=1>
+          <TBODY>
+          <TR bgColor=#c0c0c0>
+            <TD><PRE>    while( getline(std::cin, sLine) )<BR>    {<BR>       if( sLine.empty() );                     // Ignore empty lines<BR>       else<BR>       {<BR>          cout &lt;&lt; sLine[0] &lt;&lt; sLine[1] &lt;&lt; endl;<BR>          ....<BR>          ...<BR>       }<BR>    }<BR>    </PRE></TD></TR></TBODY></TABLE>
+        <LI><B>Read lines from input file:</B> 
+        <TABLE cellSpacing=1 cellPadding=4 width="100%" bgColor=#000000 
+border=1>
+          <TBODY>
+          <TR bgColor=#c0c0c0>
+            <TD><PRE>    #define SYS_CONFIG_FILE "/etc/file.conf"<BR>    #include &lt;string&gt;<BR>    #include &lt;algorithm&gt;<BR>    #include &lt;vector&gt;<BR>    #include &lt;cctype&gt;<BR>    #include &lt;iostream&gt;<BR>    #include &lt;fstream&gt;<BR><BR>    using namespace std;<BR><BR>    string::size_type posBeginIdx, posEndIdx;<BR>    string::size_type ipos=0;<BR>    string            sLine, sValue;<BR>    string            sKeyWord;<BR>    const string      sDelim( ":" );<BR><BR>    ifstream myInputFile(SYS_CONFIG_FILE, ios::in);<BR>    if( !myInputFile )<BR>    {<BR>       sError = "File SYS_CONFIG_FILE could not be opened";<BR>       return sError; // ERROR<BR>    }<BR><BR>    while( getline(myInputFile,sLine) )<BR>    {<BR>       if( sLine.empty() );                     // Ignore empty lines<BR>       else<BR>       {<BR>          posEndIdx = sLine.find_first_of( sDelim );<BR>          sKeyWord  = sLine.substr( ipos, posEndIdx ); // Extract word<BR>          posBeginIdx = posEndIdx + 1;  // Beginning of next word (after ':')<BR>       ....<BR>       ...<BR>       }<BR>    }<BR>    </PRE></TD></TR></TBODY></TABLE>
+        <LI><B>Strip blank characters:</B> 
+        <TABLE cellSpacing=1 cellPadding=4 width="100%" bgColor=#000000 
+border=1>
+          <TBODY>
+          <TR bgColor=#c0c0c0>
+            <TD><PRE>void<BR>stripLeadingAndTrailingBlanks(string&amp; StringToModify)<BR>{<BR>   if(StringToModify.empty()) return;<BR><BR>   int startIndex = StringToModify.find_first_not_of(" ");<BR>   int endIndex = StringToModify.find_last_not_of(" ");<BR>   string tempString = StringToModify;<BR>   StringToModify.erase();<BR><BR>   StringToModify = tempString.substr(startIndex, (endIndex-startIndex+ 1) );<BR>}<BR>    </PRE></TD></TR></TBODY></TABLE></LI></UL>
+      <P></P><A name=GDB_STRING></A>
+      <HR SIZE=5>
+
+      <TABLE cellSpacing=0 cellPadding=2 width="100%" border=0>
+        <TBODY>
+        <TR bgColor=#ffcc33>
+          <TD><B><BIG>The String Class and Debugging in 
+        GDB:</BIG></B></TD></TR></TBODY></TABLE>
+      <P>The first thing you will notice when using the C++ string class is that 
+      you can't de-reference any of the string class variables directly with 
+      GDB, ddd,... One must create a helper routine (for older versions of gdb) 
+      or use string class funtions (newer versions of gdb) to print out the 
+      value of the string variable. </P>
+      <DL>
+        <DD>
+        <TABLE cellSpacing=1 cellPadding=4 width="100%" bgColor=#000000 
+border=1>
+          <TBODY>
+          <TR bgColor=#c0c0c0>
+            <TD><PRE>#include &lt;string&gt;<BR>#include &lt;iostream&gt;<BR><BR>using namespace std;<BR><BR>// Helper routine ps to print a string class variable.<BR><BR>void ps(string&amp; s){ cout &lt;&lt; s &lt;&lt; endl; }<BR><BR>int main()<BR>{<BR>   string a("String A");<BR>   string b;<BR><BR>   b = "String B";<BR><BR>   cout &lt;&lt; "Hello!" &lt;&lt; endl;<BR>}<BR>    </PRE></TD></TR></TBODY></TABLE></DD></DL>
+      <P>Compile program with symbolic code for the debugger: <TT>g++ -g 
+      testprog.cpp</TT> </P>
+      <P>Start <TT>gdb</TT> debugger: <TT>gdb ./a.out</TT> </P>
+      <DL>
+        <DD>
+        <TABLE cellSpacing=1 cellPadding=4 width="100%" bgColor=#000000 
+border=1>
+          <TBODY>
+          <TR bgColor=#c0c0c0>
+            <TD><PRE>(gdb) l 1,18                             <B><I>- List lines 1 to 18</I></B>
+1       #include &lt;string&gt;
+2       #include &lt;iostream&gt;
+3
+4       using namespace std;
+5
+6       // Helper routine ps to print a string class variable.
+7
+8       void ps(string&amp; s){ cout &lt;&lt; s &lt;&lt; endl; }
+9
+10      int main()
+11      {
+12         string a("String A");
+13         string b;
+14
+15         b = "String B";
+16
+17         cout &lt;&lt; "Hello!" &lt;&lt; endl;
+18      }
+(gdb) break 17
+Breakpoint 1 at 0x804893b: file testprog.cpp, line 17.
+(gdb) run
+Starting program: /home/user1/a.out
+
+Breakpoint 1, main () at testprog.cpp:17
+17         cout &lt;&lt; "Hello!" &lt;&lt; endl;
+(gdb) p a                                <B><I>- Gdb can't de-reference string class variable "a" </I></B>
+$1 = {static npos = Cannot access memory at address 0x83a32d0
+(gdb) call ps(a)
+String A                                 <B><I>- Call helper function ps to print string conents.</I></B>
+(gdb) call ps(b)
+String B
+(gdb) c
+Continuing.
+Hello!
+
+Program exited normally.
+(gdb) quit
+    </PRE></TD></TR></TBODY></TABLE></DD></DL>With newer versions of gdb, 
+      one may use built-in string class functions: 
+      <DL>
+        <DD>
+        <TABLE cellSpacing=1 cellPadding=4 width="100%" bgColor=#000000 
+border=1>
+          <TBODY>
+          <TR bgColor=#c0c0c0>
+            <TD><PRE>(gdb) p a.c_str()<BR>$1 = 0x8049e34 "String A"<BR>(gdb) p b.c_str()<BR>$3 = 0x8049e4c "String B"<BR>(gdb) p b.empty()<BR>$2 = false<BR>(gdb) p b.size()<BR>$4 = 8<BR>    </PRE></TD></TR></TBODY></TABLE></DD></DL>
+      <P>Dereference <TT>string</TT> and <TT>wstring</TT> using GDB macro 
+      functions. See <A 
+      href="http://www.yolinux.com/TUTORIALS/GDB-Commands.html#STLDEREF">YoLinux.com 
+      GDB tutorial on dereferencing STL strings and containers</A>. </P>
+      <P></P>
+      <HR SIZE=5>
+
+      <TABLE cellSpacing=0 cellPadding=2 width="100%" border=0>
+        <TBODY>
+        <TR bgColor=#ffcc33>
+          <TD><B><BIG>Tips:</BIG></B></TD></TR></TBODY></TABLE>
+      <P></P>
+      <UL>
+        <LI>The string class is NOT a native data type, it is an object class 
+        and thus can not be handled like the traditional pointer to variable in 
+        gdb. 
+        <LI>One can pass strings by reference (i.e. argument declarations using 
+        <TT>(string&amp; <I>variable-name</I> )</TT>), by value <TT>(string 
+        <I>variable-name</I> )</TT>, and by pointer <TT>(string 
+        *<I>variable-name</I> )</TT>. 
+        <LI>When using a reference, one may mimic the protection of a variable 
+        that passing by value enables by using <TT>(const string&amp; 
+        <I>variable-name</I> )</TT> </LI></UL>
+      <P></P>
+      <HR SIZE=5>
+
+      <TABLE cellSpacing=0 cellPadding=2 width="100%" border=0>
+        <TBODY>
+        <TR bgColor=#ffcc33>
+          <TD><B><BIG>Links/Information:</BIG></B></TD></TR></TBODY></TABLE>
+      <P></P>
+      <UL>
+        <LI><A href="http://www.math.utah.edu/docs/info/libg++_19.html">GNU C++ 
+        Library: String classes</A> 
+        <LI><A 
+        href="http://www.yolinux.com/TUTORIALS/src/AIX-IStringTestCode.cpp">IBM 
+        AIX IString class example</A> 
+        <LI><A href="http://www.sgi.com/tech/stl/basic_string.html">STL: 
+        basic_string</A> - SGI STL home 
+        <LI><A 
+        href="http://www.yolinux.com/TUTORIALS/LinuxTutorialC++.html">YoLinux.com: 
+        C++</A> </LI></UL>
+      <P></P>
+      <HR SIZE=5>
+
+      <TABLE cellSpacing=0 cellPadding=2 width="100%" border=0>
+        <TBODY>
+        <TR bgColor=#ffcc33>
+          <TD vAlign=top><IMG 
+            src="Linux Tutorial - C++ String Class Tutorial_files/book40.gif"><B><BIG> 
+            Books:</BIG></B></TD></TR></TBODY></TABLE>
+      <P></P>
+      <DL>
+        <DD>
+        <TABLE border=1 celpadding="5">
+          <TBODY>
+          <TR>
+            <TD><IMG 
+              src="Linux Tutorial - C++ String Class Tutorial_files/0201379260.01.MZZZZZZZ.jpg"></TD>
+            <TD vAlign=top>The C++ Standard Library: A Tutorial Reference 
+              <BR>Nicolai M. Josuttis <BR>ISBN #0201379260, Addison Wesley 
+              Longman 
+              <P>This book is the only book I have seen which covers string 
+              classes as implemented by current Linux distributions. It offers 
+              extensive coverage of the C++ string classes as well as fairly 
+              complete coverage of the C++ Standard Template Library (STL). 
+            </P></TD>
+            <TD vAlign=top><A 
+              href="http://www.amazon.com/exec/obidos/ASIN/0201379260/yolinux-20"><IMG 
+              alt=Amazon.com 
+              src="Linux Tutorial - C++ String Class Tutorial_files/Amazon-BuyABook88x31.gif"></A> 
+              <BR></TD></TR>
+          <TR>
+            <TD><IMG 
+              src="Linux Tutorial - C++ String Class Tutorial_files/0131857576.01.MZZZZZZZ.jpg"></TD>
+            <TD vAlign=top>C++ How to Program <BR>by Harvey M. Deitel, Paul J. 
+              Deitel <BR>ISBN #0131857576, Prentice Hall 
+              <P>Fifth edition. The first edition of this book (and Professor 
+              Sheely at UTA) taught me to program C++. It is complete and covers 
+              all the nuances of the C++ language. It also has good code 
+              examples. Good for both learning and reference. </P></TD>
+            <TD vAlign=top><A 
+              href="http://www.amazon.com/exec/obidos/ASIN/0131857576/yolinux-20"><IMG 
+              alt=Amazon.com 
+              src="Linux Tutorial - C++ String Class Tutorial_files/Amazon-BuyABook88x31.gif"></A> 
+              <BR></TD></TR>
+          <TR>
+            <TD><IMG 
+              src="Linux Tutorial - C++ String Class Tutorial_files/ddjc.gif"></TD>
+            <TD vAlign=top>Dr. Dobb's Journal <BR>
+              <P>Free subscription to the premier resource for professional 
+              programmers and software developers. Multi-language and 
+              multi-platform with program listings, coding tips, design issue 
+              discussions and algorithms. Subscribe here! </P></TD>
+            <TD vAlign=top><A href="http://yolinux.tradepub.com/free/ddj">Free 
+              <BR>Subscription</A> 
+</TD></TR></TBODY></TABLE></DD></DL></TD></TR></TBODY></TABLE>
+<P></P>
+<TABLE>
+  <TBODY>
+  <TR>
+    <TD vAlign=top width="60%">Return to <A 
+      href="http://www.yolinux.com/">http://www.yolinux.com/</A> <BR>Return to 
+      <A href="http://www.yolinux.com/TUTORIALS/index.html">YoLinux Tutorial 
+      Index</A> <BR><A 
+      href="http://www.yolinux.com/YoLinuxEmailForm.html">Feedback Form</A> 
+      <P><SMALL>Copyright © 2001 - 2008 by <I>Greg Ippolito</I></SMALL> </P></TD>
+    <TD vAlign=top align=right><!-- BEGIN CODE -->
+      <SCRIPT type=text/javascript><!--
+google_ad_client = "pub-8567479315106986";
+google_ad_width = 468;
+google_ad_height = 60;
+google_ad_format = "468x60_as";
+google_ad_channel ="";
+google_ad_type = "text_image";
+google_color_border = ["336699","000000","DFF2FD","6699CC"];
+google_color_bg = ["FFFFFF","F0F0F0","DFF2FD","003366"];
+google_color_link = ["0000FF","0000FF","0000CC","FFFFFF"];
+google_color_url = ["008000","008000","008000","AECCEB"];
+google_color_text = ["000000","000000","000000","AECCEB"];
+//--></SCRIPT>
+
+      <SCRIPT src="Linux Tutorial - C++ String Class Tutorial_files/show_ads.js" 
+      type=text/javascript>
+      </SCRIPT>
+<!-- END CODE --></TD></TR></TBODY></TABLE>
+<P></P><!-- Start Quantcast tag -->
+<SCRIPT src="Linux Tutorial - C++ String Class Tutorial_files/quant.js" 
+type=text/javascript></SCRIPT>
+
+<SCRIPT type=text/javascript>_qacct="p-ebIBcaVUngFBQ";quantserve();</SCRIPT>
+<NOSCRIPT><A href="http://www.quantcast.com/p-ebIBcaVUngFBQ" target=_blank><IMG 
+style="DISPLAY: none" height=1 alt=Quantcast 
+src="Linux Tutorial - C++ String Class Tutorial_files/p-ebIBcaVUngFBQ.gif" 
+width=1 border=0></A> </NOSCRIPT><!-- End Quantcast tag -->
+<SCRIPT type=text/javascript>
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</SCRIPT>
+
+<SCRIPT type=text/javascript>
+var pageTracker = _gat._getTracker("UA-3317450-1");
+pageTracker._initData();
+pageTracker._trackPageview();
+</SCRIPT>
+</BODY></HTML>

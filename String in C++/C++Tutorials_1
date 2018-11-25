@@ -1,0 +1,923 @@
+Tutorial on Class in C++
+------------------------
+Write a simple class called Cube. The object should calculate the total area and the volume based on the side measurement.
+If the program supplies a side equal or lower than 0, reset the side to 1. Create an empty constructor and an empty destructor. 
+Implement the object in different files.
+
+Header File: cube.h  
+---------------------- 
+
+#ifndef CUBE_H
+#define CUBE_H
+
+class Cube
+{
+public:
+	Cube();
+	~Cube();
+	void setSide(double s);
+	double getSide();
+	double Area();
+	double Volume();
+	void Properties();
+private:
+	double Side;
+};
+
+#endif
+Source File cube.cpp  
+-------------------- 
+
+#include <iostream.h>
+#include "cube.h"
+
+Cube::Cube()
+{
+}
+
+Cube::~Cube()
+{
+}
+
+void Cube::setSide(double s)
+{
+	Side = s <= 0 ? 1 : s;
+}
+
+double Cube::getSide()
+{
+	return Side;
+}
+
+double Cube::Area()
+{
+	return 6 * Side * Side;
+}
+
+double Cube::Volume()
+{
+	return Side * Side * Side;
+}
+
+void Cube::Properties()
+{
+	cout << "Characteristics of this cube";
+	cout << "\nSide   = " << getSide();
+	cout << "\nArea   = " << Area();
+	cout << "\nVolume = " << Volume() << "\n\n";
+}
+Main File: Exo.cpp  
+-------------------- 
+
+#include "cube.h"
+
+void main()
+{
+	Cube cube;
+	cube.setSide(-12.55);
+	cube.Properties();
+
+	Cube de;
+	de.setSide(28.15);
+	de.Properties();
+}
+
+--------------------------------------------------------------------------------
+Here is an example of the result: 
+Characteristics of this cube
+Side   = 1
+Area   = 6
+Volume = 1
+
+Characteristics of this cube
+Side   = 28.15
+Area   = 4754.53
+Volume = 22306.7
+ 
+----------------------------------
+Inline Functions
+ 
+ 
+  Overview
+ 
+ 
+When one function calls another, the calling function must send a request to the called function that would process it and return the necessary value,
+if any. C++ allows you to implement a function so that, when it is called, a copy of the whole function is placed where the function is being called. 
+This means that the calling functions doesn't send a request to the function that performs the assignment: the function itself is accessed where
+it is needed.
+
+To create an inline function, type the inline keyword to its left when declaring the function. Here is an example:
+ 
+
+#include <iostream>
+using namespace std;
+
+inline double Sum(const double * Numbers, const int Count)
+{
+	double s = 0;
+
+	for(int i = 0; i < Count; i++)
+		s += Numbers[i];
+
+	return s;
+}
+
+int main()
+{
+	double Nbr[] = { 15.66, 18, 25, 128.62, 12.06, 22.18 };
+	double Total = Sum(Nbr, 6);
+
+	cout << "Sum = " << Total << endl;
+
+	return 0;
+}
+If you first declare a function that would be defined somewhere else, when implementing the function, you can type or omit the inline keyword: 
+ 
+
+#include <iostream>
+using namespace std;
+
+inline double Sum(const double * Numbers, const int Count);
+
+int main()
+{
+	double Nbr[] = { 15.66, 18, 25, 128.62, 12.06, 22.18 };
+	double Total = Sum(Nbr, 6);
+
+	cout << "Sum = " << Total << endl;
+
+	return 0;
+}
+
+inline double Sum(const double * Numbers, const int Count)
+{
+	double s = 0;
+
+	for(int i = 0; i < Count; i++)
+		s += Numbers[i];
+
+	return s;
+}
+
+---------------------------------------
+C++ Lists: A Simple List Of Items
+ 
+ 
+This example illustrates a simple list of items such as a list of integers, characters, etc.
+ 
+Header File: List.h
+ 
+//---------------------------------------------------------------------------
+#ifndef ListH
+#define ListH
+//---------------------------------------------------------------------------
+const int MaxItems = 100;
+typedef double ItemType;
+
+class FList
+{
+public:
+    FList();
+    virtual ~FList();
+    int Count() const;
+    bool Add(const ItemType NewItem);
+    ItemType Retrieve(const int Pos);
+    bool Delete(const int Pos);
+
+private:
+    int Counter;
+    ItemType Item[MaxItems];
+    const Index(const int Pos) const;
+};
+//---------------------------------------------------------------------------
+#endif
+ 
+Source File: List.cpp
+ 
+//---------------------------------------------------------------------------
+#pragma hdrstop
+
+#include "List.h"
+//---------------------------------------------------------------------------
+#pragma package(smart_init)
+FList::FList()
+    : Counter(0)
+{
+}
+//---------------------------------------------------------------------------
+FList::~FList()
+{
+}//---------------------------------------------------------------------------
+int FList::Count() const
+{
+    return Counter;
+}
+//---------------------------------------------------------------------------
+const FList::Index(const int Pos) const
+{
+    return Pos-1;
+}
+//---------------------------------------------------------------------------
+bool FList::Add(const ItemType NewItem)
+{
+    if( (Counter < 0) || (Counter > MaxItems) )
+        return false;
+    else
+    {
+        Item[Counter] = NewItem;
+        Counter++;
+        return true;
+    }
+}
+//---------------------------------------------------------------------------
+ItemType FList::Retrieve(const int Pos)
+{
+    if( (Pos < 0) || (Pos > Counter) )
+        return 0;
+    else
+        return Item[Pos];
+}
+//---------------------------------------------------------------------------
+bool FList::Delete(const int Pos)
+{
+    if( (Pos < 0) || (Pos > Counter) )
+        return false;
+    else
+    {
+        for(int i = Pos+1; i <= Counter; i++)
+            Item[Index(i-1)] = Item[Index(i)];
+        Counter--;
+        return true;
+    }
+}
+//---------------------------------------------------------------------------
+ 
+Source File: Main.cpp
+ 
+//---------------------------------------------------------------------------
+#include <iostream>
+#include <conio>
+using namespace std;
+#pragma hdrstop
+#include "List.h"
+//---------------------------------------------------------------------------
+
+#pragma argsused
+int main(int argc, char* argv[])
+{
+    FList List;
+
+    List.Add(1240.42);
+    List.Add(283.15);
+    List.Add(42.48);
+    List.Add(582.12);
+    List.Add(60.14);
+    List.Add(8022.28);
+
+    cout << "List of items";
+    for(int i = 0; i < List.Count(); i++)
+        cout << "\nItem No." << i + 1 << ": " << List.Retrieve(i);
+    cout << "\nNumber of items: " << List.Count() << " items\n\n";
+
+    List.Delete(5);
+    List.Delete(2);
+    cout << "List of items";
+    for(int i = 0; i < List.Count(); i++)
+        cout << "\nItem No." << i + 1 << ": " << List.Retrieve(i);
+    cout << "\nNumber of items: " << List.Count() << " items\n\n";
+
+    cout << "Press any key to continue...";
+    getch();
+    return 0;
+}
+//---------------------------------------------------------------------------
+ 
+Passing Arguments
+ 
+ 
+This example demonstrates different techniques of passing arguments: by value, by reference, and as pointers
+ 
+Source File 
+ 
+
+#include <iostream.h>
+
+void main()
+{
+	int Boys = 3, Girls = 5;
+	void PassByValue(int males, int females);
+	void Reference(int &m, int &f);
+	void Pointers(int *u, int *v);
+	
+	cout << "At startup, within main()";
+	cout << "\n\tBoys  = " << Boys;
+	cout << "\n\tGirls = " << Girls;
+
+	cout << "\nPassing arguments by value = Copy";
+	PassByValue(Boys, Girls);
+	cout << "\nAfter calling PassByValue(), within main()";
+	cout << "\n\tBoys  = " << Boys;
+	cout << "\n\tGirls = " << Girls;
+
+	cout << "\nPassing arguments by reference";
+	Reference(Boys, Girls);
+	cout << "\nAfter calling Reference(), within main()";
+	cout << "\n\tBoys  = " << Boys;
+	cout << "\n\tGirls = " << Girls;
+
+	cout << "\nPassing arguments pointers";
+	Pointers(&Boys, &Girls);
+	cout << "\nAfter calling Pointers(), within main()";
+	cout << "\n\tBoys  = " << Boys;
+	cout << "\n\tGirls = " << Girls;
+	cout << "\n";
+}
+
+void PassByValue(int b, int g)
+{
+	b += 3, g += 4;
+
+	cout << "\nWithin PassByValue(), now";
+	cout << "\n\tBoys  = " << b;
+	cout << "\n\tGirls = " << g;
+}
+
+void Reference(int &b, int &g)
+{
+	b = b + 8, g = g + 5;
+
+	cout << "\nWithin Reference(), now";
+	cout << "\n\tBoys  = " << b;
+	cout << "\n\tGirls = " << g;
+}
+
+void Pointers(int *b, int *g)
+{
+	*b = 44, *g = 52;
+
+	cout << "\nWithin Pointers(), now";
+	cout << "\n\tBoys  = " << *b;
+	cout << "\n\tGirls = " << *g;
+}
+
+--------------------------------------------------------------------------------
+
+This would produce:
+  At startup, within main()
+        Boys  = 3
+        Girls = 5
+Passing arguments by value = Copy
+Within PassByValue(), now
+        Boys  = 6
+        Girls = 9
+After calling PassByValue(), within main()
+        Boys  = 3
+        Girls = 5
+Passing arguments by reference
+Within Reference(), now
+        Boys  = 11
+        Girls = 10
+After calling Reference(), within main()
+        Boys  = 11
+        Girls = 10
+Passing arguments pointers
+Within Pointers(), now
+        Boys  = 44
+        Girls = 52
+After calling Pointers(), within main()
+        Boys  = 44
+        Girls = 52
+ 
+
+---------------------------------------------------------------------------------
+Passing Arguments by Value
+ 
+ 
+This illustrates the technique used to pass arguments by value to a function.
+ 
+#include <iostream>
+#include <string>
+using namespace std;
+
+string GetName()
+{
+    string FirstName, LastName, FN;
+    
+    cout << "Employee's First Name: ";
+    cin >> FirstName;
+    cout << "Employee's Last Name: ";
+    cin >> LastName;
+    
+    FN = FirstName + " " + LastName;
+    return FN;
+}
+
+int main()
+{
+    string FullName;
+    double Hours;
+    double GetHours(string FullName);
+    
+	FullName = GetName();
+    Hours = GetHours(FullName);
+    
+	cout << "\nEmployee's Name: " << FullName;
+    cout << "\nWeekly Hours: " << Hours << " hours\n\n";
+	
+	return 0;
+}
+
+double GetHours(string FullName)
+{
+    double Mon, Tue, Wed, Thu, Fri, TotalHours;
+    
+    cout << endl << FullName << "'s Weekly Hours\n";
+    cout << "Monday: ";
+    cin >> Mon;
+    cout << "Tuesday: ";
+    cin >> Tue;
+    cout << "Wednesday: ";
+    cin >> Wed;
+    cout << "Thursday: ";
+    cin >> Thu;
+    cout << "Friday: ";
+    cin >> Fri;
+    
+    TotalHours = Mon + Tue + Wed + Thu + Fri;
+    return TotalHours;
+}
+ 
+--------------------------------------------------------------
+C++ Examples: Returning a Reference
+ 
+ 
+As a function can be created to return a value of a primitive type, a function can also be defined to return a reference to a primitive type. When declaring such a function, you must indicate that it is returning a reference by preceding it with the & operator. Here is an example: 
+
+double & GetWeeklyHours()
+{
+}
+In the body of the function, defined the desired behavior of the function as you see fit. The most important rule to apply is that the function must return not only a reference but a reference to the appropriate type. When returning the value, don't precede the name of the variable with &. Here is an example:
+
+double & GetWeeklyHours()
+{
+    double h = 46.50;
+    double &hours = h;
+    return hours;
+}
+When calling a function that returns a reference, you can proceed as if it returns a regular value but of the appropriate type. Here is an example:
+
+//---------------------------------------------------------------------------
+#include <iostream>
+using namespace std;
+
+double & GetWeeklyHours()
+{
+    double h = 46.50;
+    double &hours = h;
+    return hours;
+}
+//---------------------------------------------------------------------------
+int main()
+{
+    double hours = GetWeeklyHours();
+
+    cout << "Weekly Hours: " << hours << endl;
+
+    return 0;
+}
+//---------------------------------------------------------------------------
+This would produce:
+
+Weekly Hours: 46.5
+
+ 
+----------------------------------------------------------------------------
+C++ Examples: Returning a Pointer
+ 
+ 
+  Instead of a regular value or even a reference, a function can return a pointer. You can start to specify this by typing the * operator on the left side of the function's name. Here is an example: 
+
+double * GetSalary()
+{
+}
+Then, use the body of the function to define it. Before the closing curly bracket of the function, remember to return a pointer to the return value. Here is an example:
+
+double * GetSalary()
+{
+    double salary = 26.48;
+    double *HourlySalary = &salary;
+
+    return HourlySalary;
+}
+Because a pointer by defining is a reference to the address where a variable resides, when a function is defined as returning a pointer, you can also return a reference to the appropriate type. Here is an example:
+
+double * GetSalary()
+{
+    double salary = 26.48;
+ 
+    return &salary;
+}
+After defining the function, you can call it. Remember that the asterisk is used to get the value of a pointer. This means that, when calling the function, if you want to access its value, make sure you include the asterisk on the left side of the name of the function. Here is an example:
+
+//---------------------------------------------------------------------------
+#include <iostream>
+using namespace std;
+
+double & GetWeeklyHours()
+{
+    double h = 46.50;
+    double &hours = h;
+    return hours;
+}
+//---------------------------------------------------------------------------
+double * GetSalary()
+{
+    double salary = 26.48;
+    double *HourlySalary = &salary;
+
+    return HourlySalary;
+}
+//---------------------------------------------------------------------------
+int main()
+{
+    double hours  = GetWeeklyHours();
+    double salary = *GetSalary();
+
+    cout << "Weekly Hours:  " << hours << endl;
+    cout << "Hourly Salary: " << salary << endl;
+    double WeeklySalary = hours * salary;
+    cout << "Weekly Salary: " << WeeklySalary << endl;
+
+    return 0;
+}
+//---------------------------------------------------------------------------
+This would produce:
+
+Weekly Hours:  46.5
+Hourly Salary: 26.48
+Weekly Salary: 1231.32
+
+ 
+--------------------------------------------------------------------------------
+C++ Examples: Returning a Double-Pointer
+ 
+ 
+  As opposed to returning one, you can return a double-pointer. Primarily, you must specify this by preceding the name of the function with two asterisks. Here is an example:
+
+double ** GetWeeklySalary()
+{
+}
+Once again, in the body of the function, do whatever you want, applying some of the techniques we have studied so far about functions and pointers. Before closing the function, remember to return a double-pointer of the appropriate type. Here is an example:
+
+double ** GetWeeklySalary()
+{
+	double w      = 880.24;
+	double *ws    = &w;
+	double **wwss = &ws;
+
+	return wwss;
+}
+When calling the function, if you want to access the value it returns, you must precede it with a double asterisk. Here is an example:
+
+//---------------------------------------------------------------------------
+#include <iostream>
+using namespace std;
+
+double ** GetWeeklySalary()
+{
+	double w      = 880.24;
+	double *ws    = &w;
+	double **wwss = &ws;
+
+	return wwss;
+}
+//---------------------------------------------------------------------------
+int main(int argc, char* argv[])
+{
+    double WeeklySalary = **GetWeeklySalary();
+
+    cout << "Weekly Salary: " << WeeklySalary << endl;
+
+    return 0;
+}
+//---------------------------------------------------------------------------
+This would produce:
+
+Weekly Salary: 880.24
+ 
+------------------------------------------------------------------------------------
+C++ Examples:
+Returning a Reference to a Pointer
+ 
+ 
+  Instead of returning a pointer or a reference, you can return a reference to a pointer. To declare such a function, precede its name with * and &. Here is an example:
+
+double *& ShowNumber()
+{
+}
+In the body of the function, you can do whatever is appropriate. An important rule with this type of function is that it must return either a global or a static variable. In other words, the variable that is returned must conserve its value when the function exits. Here is an example that returns a static variable:
+
+double *& ShowNumber()
+{
+	double n = 1550.85;
+	static double *v = &n;
+
+	return v;
+}
+When calling the function, precede its name with an asterisk. Here is an example:
+
+//---------------------------------------------------------------------------
+#include <iostream>
+using namespace std;
+
+double *& ShowNumber()
+{
+	double n = 1550.85;
+	static double *v = &n;
+
+	return v;
+}
+//---------------------------------------------------------------------------
+int main()
+{
+    double Number = *ShowNumber();
+
+    cout << "Number: " << Number << endl;
+
+    return 0;
+}
+//---------------------------------------------------------------------------
+ 
+Initializing the Members of a Class Using a Constructor
+ 
+ 
+This example uses a class that contains a constructor used to initialize the object. The class is called ShoeBox. When supplied with a length, a height, and a width, the object should calculate and display the total area of all sides and the volume.
+ 
+Header File: shoebox.h  
+ 
+
+#ifndef SHOEBOX_H
+#define SHOEBOX_H
+
+class ShoeBox
+{
+public:
+	ShoeBox(double l, double h, double w);
+	double getLength() const;
+	double getHeight() const;
+	double getWidth() const;
+	void Properties();
+	double Area() const;
+	double Volume() const;
+private:
+	double Length;
+	double Height;
+	double Width;
+};
+
+#endif
+Source File: shoebox.h  
+ 
+
+#include <iostream.h>
+#include "box.h"
+
+ShoeBox::ShoeBox(double l, double h, double w)
+{
+	Length = l;
+	Height = h;
+	Width  = w;
+}
+
+double ShoeBox::getLength() const
+{
+	return Length;
+}
+
+double ShoeBox::getHeight() const
+{
+	return Height;
+}
+
+double ShoeBox::getWidth() const
+{
+	return Width;
+}
+
+double ShoeBox::Area() const
+{
+	return 2 * ((Length * Height) + (Height + Width) + (Length * Width));
+}
+
+double ShoeBox::Volume() const
+{
+	return Length * Height * Width;
+}
+
+void ShoeBox::Properties()
+{
+	cout << "Properties of the shoe box";
+	cout << "\nLength = " << getLength();
+	cout << "\nHeight = " << getHeight();
+	cout << "\nWidth  = " << getWidth();
+	cout << "\nArea   = " << Area();
+	cout << "\nVolume = " << Volume() << "\n\n";
+}
+Header File: cube.h  
+ 
+
+#include "box.h"
+
+void main()
+{
+	ShoeBox Size6(8.65, 4.25, 4.15);
+	Size6.Properties();
+}
+
+--------------------------------------------------------------------------------
+Here is a result of running the program 
+Properties of the shoe box
+Length = 8.65
+Height = 4.25
+Width  = 4.15
+Area   = 162.12
+Volume = 152.564
+---------------------------------------------------------------
+A Class as a Member Variable of Another Class
+ 
+ 
+This is an example of one object (the shape class implements a rectangle) being a member variable of another object (a brick).
+ 
+
+Header File: shape.h 
+
+#ifndef _SHAPE_H
+#define _SHAPE_H
+
+class FRectangle
+{
+public:
+	FRectangle(double l = 0, double w = 0)
+		: Length(l), Width(w) {}
+	void setLength(double lgt);
+	void setWidth(double wdt);
+	double getLength() const;
+	double getWidth() const;
+	double Perimeter() const;
+	double Area() const;
+	void Properties();
+private:
+	double Length;
+	double Width;
+};
+
+#endif // _SHAPE_H
+Source File: shape.cpp 
+
+#include <iostream.h>
+#include "shape.h"
+
+void FRectangle::setLength(double lgt)
+{
+	Length = lgt;
+}
+
+void FRectangle::setWidth(double wdt)
+{
+	Width = wdt;
+}
+
+double FRectangle::getLength() const
+{
+	return Length;
+}
+
+double FRectangle::getWidth() const
+{
+	return Width;
+}
+
+double FRectangle::Perimeter() const
+{
+	return 2 * (Length + Width);
+}
+
+double FRectangle::Area() const
+{
+	return Length * Width;
+}
+
+void FRectangle::Properties()
+{
+	cout << "\nRectangle characteristics";
+	cout << "\n\tLength    = " << Length;
+	cout << "\n\tWidth     = " << Width;
+	cout << "\n\tPerimeter = " << Perimeter();
+	cout << "\n\tArea      = " << Area() << endl;
+}
+Header File: brick.h 
+
+#ifndef BRICK_H_
+#define BRICK_H_
+
+#include "shape.h"
+
+class Brick
+{
+public:
+	Brick() {}
+	void setThickness(double Tck);
+	void setDimensions(double l, double w, double t);
+	void setColor(char* clr);
+	void setTexture(char* txr);
+	char* getColor() const;
+	char* getTexture() const;
+	double Volume() const;
+	void Display();
+private:
+	FRectangle shape;
+	char* Color;
+	char* Texture;
+	double Thickness;
+};
+
+#endif // BRICK_H_
+Source File: brick.cpp 
+
+#include <iostream.h>
+#include "brick.h"
+
+void Brick::setThickness(double Tck)
+{
+	Thickness = Tck;
+}
+
+void Brick::setColor(char* clr)
+{
+	Color = clr;
+}
+
+void Brick::setTexture(char* txr)
+{
+	Texture = txr;
+}
+
+void Brick::setDimensions(double l, double w, double t)
+{
+	shape.setLength(l);
+	shape.setWidth(w);
+	setThickness(t);
+}
+
+char* Brick::getColor() const
+{
+	return Color;
+}
+
+char* Brick::getTexture() const
+{
+	return Texture;
+}
+
+double Brick::Volume() const
+{
+	return shape.getLength() * shape.getWidth() * Thickness;
+}
+
+void Brick::Display()
+{
+	cout << "\nBrick characteristics";
+	cout << "\n\tLength   = " << shape.getLength();
+	cout << "\n\tWidth    = " << shape.getWidth();
+	cout << "\n\tArea     = " << shape.Area();
+	cout << "\n\tVolume   = " << Volume();
+	cout << "\n\tColor    = " << getColor();
+	cout << "\n\tTextture = " << getTexture();
+	cout << endl;
+}
+Main File: Exo.cpp 
+
+#include "shape.h"
+#include "brick.h"
+
+void main()
+{
+	Brick brick;
+
+	brick.setDimensions(12.50, 8.75, 5.55);
+	brick.setColor("Bone White");
+	brick.setTexture("Early Breeze");
+
+	brick.Display();
+}
+
+--------------------------------------------------------------------------------
+Here is an example of running the program: 
+Brick characteristics
+        Length   = 12.5
+        Width    = 8.75
+        Area     = 109.375
+        Volume   = 607.031
+        Color    = Bone White
+        Textture = Early Breeze
+-----------------------------------------------------------------------------------

@@ -1,0 +1,129 @@
+Color in C++
+-------------
+This will work for windows..
+
+Remember to include <windows.h>
+
+
+Code:
+#define black 0
+#define dark_blue 1
+#define green 2
+#define cyan 3
+#define red 4
+#define dark_purple 5
+#define brown 6
+#define gray 7
+#define dark_gray 8
+#define blue 9
+#define neon_green 10
+#define light_blue 11
+#define light_red 12
+#define purple 13
+#define yellow 14
+#define white 15
+
+//actual function to set color
+void color(int color)
+{
+   HANDLE hCon = GetStdHandle(STD_OUTPUT_HANDLE);
+   SetConsoleTextAttribute(hCon,color);
+}
+------------------------------------------------------
+Re: Change text color using visual c++   #2   Aug 27th, 2004 
+conio.h
+
+It has a lot funtions for console input/output.Take a look at it.
+
+TextColor(RED);
+TextBackground(BLUE);
+
+The color values range from 0-15 with 0 being black and 15 being white
+
+warning,i am not too sure of the funtion names,been a while since i used this, though i used it almost everywhere, man time flies 
+-------------------------------------------------------------
+#define BLACK 0
+#define BLUE 1
+#define GREEN 2
+#define CYAN 3
+#define RED 4
+#define MAGENTA 5
+#define BROWN 6
+#define LIGHTGREY 7
+#define DARKGREY 8
+#define LIGHTBLUE 9
+#define LIGHTGREEN 10
+#define LIGHTCYAN 11
+#define LIGHTRED 12
+#define LIGHTMAGENTA 13
+#define YELLOW 14
+#define WHITE 15
+#define BLINK 128
+HANDLE  screen;
+int textcolor = LIGHTGREEN;
+int backgroundcolor = BLACK;
+screen = GetStdHandle(STD_OUTPUT_HANDLE);
+void TextColor(int fontcolor,int backgroundcolor,HANDLE screen)
+{
+   int color_attribute;
+   color_attribute = backgroundcolor;
+   color_attribute = _rotl(color_attribute,4) | fontcolor;
+   SetConsoleTextAttribute(screen,color_attribute);
+}
+ 
+TextColor(textcolor,backgroundcolor ,screen); 
+FillConsoleOutputAttribute(screen, _rotl(backgroundcolor,4) , 80 * 50,coord , &cWritten); #define BLACK 0
+#define BLUE 1
+#define GREEN 2
+#define CYAN 3
+#define RED 4
+#define MAGENTA 5
+#define BROWN 6
+#define LIGHTGREY 7
+#define DARKGREY 8
+#define LIGHTBLUE 9
+#define LIGHTGREEN 10
+#define LIGHTCYAN 11
+#define LIGHTRED 12
+#define LIGHTMAGENTA 13
+#define YELLOW 14
+#define WHITE 15
+#define BLINK 128
+HANDLE  screen;
+int textcolor = LIGHTGREEN;
+int backgroundcolor = BLACK;
+screen = GetStdHandle(STD_OUTPUT_HANDLE);
+void TextColor(int fontcolor,int backgroundcolor,HANDLE screen)
+{
+   int color_attribute;
+   color_attribute = backgroundcolor;
+   color_attribute = _rotl(color_attribute,4) | fontcolor;
+   SetConsoleTextAttribute(screen,color_attribute);
+}
+ 
+TextColor(textcolor,backgroundcolor ,screen); 
+FillConsoleOutputAttribute(screen, _rotl(backgroundcolor,4) , 80 * 50,coord , &cWritten); 
+---------------------------------------------------------------------------------------------
+#include <windows.h>
+#include <iostream.h>
+ 
+int main()
+{
+   SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 0); //replace the 0 with a number for the color you want
+ 
+   cout << "Your text here" << endl;
+ 
+   return 0;
+} 
+#include <windows.h>
+#include <iostream.h>
+ 
+int main()
+{
+   SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 0); //replace the 0 with a number for the <strong class="highlight">color</strong> you want
+ 
+   cout << "Your text here" << endl;
+ 
+   return 0;
+}
+----------------------------------------------------

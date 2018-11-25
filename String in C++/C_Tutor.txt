@@ -1,0 +1,69 @@
+Tutorials on C/C++
+-------------------
+1
+---
+#include <iostream>
+
+using namespace std;
+
+int main()
+{
+  cout<<"HEY, you, I'm alive! Oh, and Hello World!\n";
+  cin.get();
+}
+
+2
+--
+#include <iostream>
+
+using namespace std;
+
+int main()
+{
+  int thisisanumber;
+
+  cout<<"Please enter a number: ";
+  cin>> thisisanumber;
+  cin.ignore();
+  cout<<"You entered: "<< thisisanumber <<"\n";
+  cin.get();
+}
+
+3
+--
+#include <iostream>
+using namespace std;
+
+int main ()
+{
+  cout << "Hello World! ";     // prints Hello World!
+  cout << "I'm a C++ program"; // prints I'm a C++ program
+  return 0;
+}
+
+4
+--
+#include <iostream>
+using namespace std;
+
+int main ()
+{
+  // declaring variables:
+  int a, b;
+  int result;
+
+  // process:
+  a = 5;
+  b = 2;
+  a = a + 1;
+  result = a - b;
+
+  // print out the result:
+  cout << result;
+
+  // terminate the program:
+  return 0;
+}
+
+
+

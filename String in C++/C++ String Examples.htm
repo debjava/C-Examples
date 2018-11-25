@@ -1,0 +1,1407 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0037)http://anaturb.net/C/string_exapm.htm -->
+<HTML><HEAD><TITLE>C++ String Examples</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=windows-1252">
+<STYLE>BODY {
+	SCROLLBAR-FACE-COLOR: #ffffff; COLOR: #000051; SCROLLBAR-ARROW-COLOR: #000051; SCROLLBAR-TRACK-COLOR: #ffffff; POSITION: relative; TOP: 157px
+}
+.blue {
+	FONT-WEIGHT: bold; COLOR: red
+}
+.green {
+	COLOR: green
+}
+</STYLE>
+
+<META content="MSHTML 6.00.2800.1625" name=GENERATOR></HEAD>
+<BODY><PRE><SPAN class=blue><A name=constructors>constructors 1.</A></SPAN>
+<HR>
+#include &lt;iostream&gt;
+#include &lt;string&gt;
+using namespace std;
+
+int main () 
+{
+    char *line = "short line for testing";
+    
+    <SPAN class=green>// with no arguments</SPAN>
+    <B>string s1</B>;
+    s1 = "Anatoliy";
+    cout &lt;&lt; "s1  is: " &lt;&lt; s1 &lt;&lt; endl;
+
+    <SPAN class=green>// copy constructor</SPAN>
+    <B>string</B> s2 (s1);
+    cout &lt;&lt; "s2  is: " &lt;&lt; s2 &lt;&lt; endl;
+
+    <SPAN class=green>// one argumen</SPAN>
+    <B>string</B> s3 (line);
+    cout &lt;&lt; "s3  is: " &lt;&lt; s3 &lt;&lt; endl;
+
+    <SPAN class=green>// first argumen C string</SPAN>
+    <SPAN class=green>// second number of characters</SPAN>
+    <B>string s4</B> (line,10);
+    cout &lt;&lt; "s4  is: " &lt;&lt; s4 &lt;&lt; endl;
+
+    <SPAN class=green>// 1 - C++ string</SPAN>
+    <SPAN class=green>// 2 - start position</SPAN>
+    <SPAN class=green>// 3 - number of characters</SPAN>
+    <B>string s5</B> (s3,6,4); // copy word 'line' from s3
+    cout &lt;&lt; "s5  is: " &lt;&lt; s5 &lt;&lt; endl;
+
+    <SPAN class=green>// 1 - number characters</SPAN>
+    <SPAN class=green>// 2 - character itself</SPAN>
+    <B>string s6</B> (15,'*');
+    cout &lt;&lt; "s6  is: " &lt;&lt; s6 &lt;&lt; endl;
+
+    <SPAN class=green>// 1 - start iterator</SPAN>
+    <SPAN class=green>// 2 - end iterator</SPAN>
+    <B>string s7</B> (s3.begin(),s3.end()-5);
+    cout &lt;&lt; "s7  is: " &lt;&lt; s7 &lt;&lt; endl;
+
+    <SPAN class=green>// you can instantiate string with assignment</SPAN>
+    <B>string s8</B> = "Anatoliy";
+    cout &lt;&lt; "s8  is: " &lt;&lt; s8 &lt;&lt; endl;
+
+    return 0;
+}
+<B>OUTPUT:</B>
+<SPAN class=green>// s1  is: Anatoliy
+// s2  is: Anatoliy
+// s3  is: short line for testing
+// s4  is: short line
+// s5  is: line
+// s6  is: ***************
+// s7  is: short line for te
+// s8  is: Anatoliy</SPAN>
+
+
+<SPAN class=blue><A name=getline>getline 1.</A></SPAN>
+<HR>
+<DIV class=green>
+/* 1  getline ( intut_stream, str, delim );
+  Extracts characters from intut_stream and stores them
+  in str until s.max_size() characters have been extracted,
+  the end of file occurs, or delim is encountered, in which
+  case delim is extracted from istr but is not stored in s
+  2 getline( Iter, str )
+  Inputs a string value for str as in the preceding func&shy;
+  tion with delim =
+*/</DIV>
+#include &lt;iostream&gt;
+#include &lt;string&gt;
+#include &lt;vector&gt;
+#include &lt;fstream&gt;
+using namespace std;
+
+int main () 
+{
+    string str;
+    cout &lt;&lt; "Enter string (EOL = $) : ";
+    <B>getline</B> (cin, str, '$');
+    cout &lt;&lt; "Str is : " &lt;&lt; str &lt;&lt; endl;
+
+    ifstream In("data.dat");
+    vector<STRING> v;
+
+    cout &lt;&lt; endl &lt;&lt; "Read data from file" &lt;&lt; endl;
+    while ( ! In.eof() )
+    {
+    	<B>getline</B> (In, str);
+    	v.push_back(str);
+    }
+
+    copy (v.begin(),v.end(),
+    		ostream_iterator<STRING>(cout,"\n"));
+    cout &lt;&lt; endl;
+    	
+
+    return 0;
+}
+<B>OUTPUT:</B>
+<SPAN class=green>// Enter string (EOL = $) : Str is : first line
+// second line$
+// 
+// Read data from file
+// file: "data.dat"
+// second line
+// last line</SPAN>
+
+
+<SPAN class=blue><A name=">>operators"> &lt;&lt; &gt;&gt; operators 1.</A></SPAN>
+<HR>
+#include &lt;iostream&gt;
+#include &lt;string&gt;
+using namespace std;
+
+int main () 
+{
+    string str;
+
+    cout <B>&lt;&lt;</B> "Enter string for testing : ";
+    cin  <SPAN class=blue><B>&gt;&gt;</B></SPAN> str;
+    cout &lt;&lt; "\nString is : " <SPAN class=blue><B>&lt;&lt;</B></SPAN> str &lt;&lt; endl;
+
+    cout &lt;&lt; "Enter string for testing "
+    	 &lt;&lt; "(<CRL>d to quit) : ";
+    while ( cin <SPAN class=blue><B>&gt;&gt;</B></SPAN> str )
+    {
+    	cout &lt;&lt; endl;
+    	cout &lt;&lt; "String is : " <SPAN class=blue><B>&lt;&lt;</B></SPAN> str &lt;&lt; endl;
+    	cout &lt;&lt; "Enter string for testing "
+             &lt;&lt; "(<CRL>d to quit) : ";
+    }
+
+    return 0;
+}
+<B>OUTPUT:</B>
+<SPAN class=green>// Enter string for testing : first
+// String is : first
+// Enter string for testing (<CRL>d to quit) : second
+// String is : second
+// Enter string for testing (<CRL>d to quit) : third
+// String is : third
+// Enter string for testing (<CRL>d to quit) : </SPAN>
+
+
+<SPAN class=blue><A name=+operators> + += = operators 1.</A></SPAN>
+<HR>
+#include &lt;iostream&gt;
+#include &lt;string&gt;
+using namespace std;
+
+int main () 
+{
+    string str <SPAN class=blue><B>=</B></SPAN> "Hello";
+    cout &lt;&lt; "str is : " &lt;&lt; str &lt;&lt; endl;
+    str <SPAN class=blue><B>+=</B></SPAN> ",";
+    str <SPAN class=blue><B>+=</B></SPAN> ' ';
+    cout &lt;&lt; "str is : " &lt;&lt; str &lt;&lt; endl;
+
+    string s;
+    s = str <SPAN class=blue><B>+</B></SPAN> "World";
+    cout &lt;&lt; "s is : " &lt;&lt; s &lt;&lt; endl;
+
+    char ch <SPAN class=blue><B>=</B></SPAN> '!';
+    s <SPAN class=blue><B>+=</B></SPAN> ch;
+    cout &lt;&lt; "s is : " &lt;&lt; s &lt;&lt; endl;
+
+    return 0;
+}
+<B>OUTPUT:</B>
+<SPAN class=green>// str is : Hello
+// str is : Hello, 
+// s is : Hello, World
+// s is : Hello, World!</SPAN>
+
+
+<SPAN class=blue><A name=append>append 1.</A></SPAN>
+<HR>
+#include &lt;iostream&gt;
+#include &lt;string&gt;
+using namespace std;
+
+int main () 
+{
+    string str = "Nobody is perfect";
+    string s   = ""; <SPAN class=green>// empty string</SPAN>
+    char *ch   = "abcdef";
+
+    <SPAN class=green>// append string str at the end of s;</SPAN> 
+    <SPAN class=green>// return s</SPAN>
+    
+    <SPAN class=green>// appends at the end of s a copy of the n characters</SPAN>
+    <SPAN class=green>// in str, starting at position pos; if n is too</SPAN>
+    <SPAN class=green>// large, characters are copied only until the end</SPAN>  
+    <SPAN class=green>// of str is reached;</SPAN>
+    <SPAN class=green>// returns s</SPAN>
+    <B>s.append</B>(str,0,6);
+    cout &lt;&lt; "s is : " &lt;&lt; s &lt;&lt; endl;
+
+    <SPAN class=green>// appends copies of the characters in the range [inpIt1,</SPAN>
+    <SPAN class=green>// inpIt2] to s; returns s</SPAN>
+    string::iterator inpIt1 = str.begin()+6;
+                    //start from ' is'
+    string::iterator inpIt2 = str.end();
+
+    <B>s.append</B>(inpIt1,inpIt2);
+    cout &lt;&lt; "s is : " &lt;&lt; s &lt;&lt; endl;
+
+    <SPAN class=green>// appends three !</SPAN>
+    <B>s.append</B>(3,'!');
+    cout &lt;&lt; "s is : " &lt;&lt; s &lt;&lt; endl;
+    
+    <SPAN class=green>// appends the first n characters in ch at the end</SPAN>
+    <SPAN class=green>// of s; returns s</SPAN>
+    <B>s.append</B>(ch,3);
+    cout &lt;&lt; "s is : " &lt;&lt; s &lt;&lt; endl;
+    
+    <SPAN class=green>// appends charArray at the end of s; returns s</SPAN>
+    <B>s.append</B>(ch,3);
+    cout &lt;&lt; "s is : " &lt;&lt; s &lt;&lt; endl;
+
+    return 0;
+}
+<B>OUTPUT:</B>
+<SPAN class=green>// s is : Nobody
+// s is : Nobody is perfect
+// s is : Nobody is perfect!!!
+// s is : Nobody is perfect!!!abc
+// s is : Nobody is perfect!!!abcabc</SPAN>
+
+
+<SPAN class=blue><A name=assign>assign 1.</A></SPAN>
+<HR>
+#include &lt;iostream&gt;
+#include &lt;string&gt;
+using namespace std;
+
+int main () 
+{
+    string str = "Nobody is perfect";
+    string s   = "";
+    char *ch   = "Robert Frost";
+
+    <SPAN class=green>// assigns a copy of str to s; returns s</SPAN>
+    <B>s.assign</B>(str);
+    cout &lt;&lt; "s is : " &lt;&lt; s &lt;&lt; endl;
+
+    
+    <SPAN class=green>// assigns to s a copy of the n characters in str, start&shy;
+    // ing at position 10: if n is too large, characters are
+    // copied only until the end of str is reached: returns s</SPAN>
+    <B>s.assign</B>(str,10,7); // perfect
+    cout &lt;&lt; "s is : " &lt;&lt; s &lt;&lt; endl;
+
+    <SPAN class=green>// assigns to s a string consisting of the first n charac&shy;
+    // ters in ch: returns s</SPAN>
+    <B>s.assign</B>(ch,6);
+    cout &lt;&lt; "s is : " &lt;&lt; s &lt;&lt; endl;
+
+    <SPAN class=green>// assigns to s a copy of ch: returns s</SPAN>
+    <B>s.assign</B>(ch);
+    cout &lt;&lt; "s is : " &lt;&lt; s &lt;&lt; endl;
+
+    <SPAN class=green>// assigns  to s a string consisting of the characters in
+    // the range str.begin(), str.end(); returns s</SPAN>
+    <B>s.assign</B>(str.begin(),str.end());
+    cout &lt;&lt; "s is : " &lt;&lt; s &lt;&lt; endl;
+
+    <SPAN class=green>// assigns to s a string consisting of n copies of ch;
+    // returns s</SPAN>
+    <B>s.assign</B>(17,'*');
+    cout &lt;&lt; "s is : " &lt;&lt; s &lt;&lt; endl;
+
+    return 0;
+}
+<B>OUTPUT:</B>
+<SPAN class=green>// s is : Nobody is perfect
+// s is : perfect
+// s is : Robert
+// s is : Robert Frost
+// s is : Nobody is perfect
+// s is : *****************</SPAN>
+
+
+<SPAN class=blue><A name=at>at 1.</A></SPAN>
+<HR>
+<DIV class=green>// returns s[pos]</DIV>
+#include &lt;iostream&gt;
+#include &lt;string&gt;
+using namespace std;
+
+int main () 
+{
+    string s = "Nobody is perfect";
+
+    <SPAN class=green>// Returns s[pos]</SPAN>
+    for ( int pos = 0; pos &lt; s.length(); ++pos )
+    	cout &lt;&lt; <B>s.at</B>(pos) &lt;&lt; " ";
+    cout &lt;&lt; endl;
+
+    return 0;
+}
+<B>OUTPUT:</B>
+<SPAN class=green>// N o b o d y   i s   p e r f e c t </SPAN>
+
+
+<SPAN class=blue><A name=begin>begin 1.</A></SPAN>
+<HR>
+<DIV class=green>// Returns an iterator positioned at the
+// first character in a string</DIV>
+#include &lt;iostream&gt;
+#include &lt;string&gt;
+using namespace std;
+
+int main () 
+{
+    string str = "C++ is best computer language";
+
+    string::iterator It = <B>str.begin</B>();
+
+    while ( It != <B>str.end</B>() )
+    {
+    	if ( *It == ' ' )
+    		*It = '\n';
+    	cout &lt;&lt; *It++;
+    }
+    cout &lt;&lt; endl;
+    
+    return 0;
+}
+<B>OUTPUT:</B>
+<SPAN class=green>// C++
+// is
+// best
+// computer
+// language</SPAN>
+
+
+<SPAN class=blue><A name=c_str>c_str 1.</A></SPAN>
+<HR>
+<DIV class=green>// returns (the base address of) a char 
+// array containing the characters stored in s, 
+// terminated by a null character.</DIV>
+#include &lt;iostream&gt;
+#include &lt;string&gt;
+using namespace std;
+
+int main () 
+{
+    string str = "Anatoliy";
+    char *ary = new char[str.length()+1];
+
+    <SPAN class=green>// strcpy ( ary, str ); that is wrong way</SPAN>
+    strcpy ( ary, <B>str.c_str</B>() ); <SPAN class=green>// that is correct</SPAN>
+
+    cout &lt;&lt; ary &lt;&lt; endl;
+    
+    return 0;
+}
+<B>OUTPUT:</B>
+<SPAN class=green>// Anatoliy</SPAN>
+
+
+<SPAN class=blue><A name=capacity>capacity 1.</A></SPAN>
+<HR>
+<DIV class=green>// returns the size (of type size_type)
+// of the storage allocated in string</DIV>
+#include &lt;iostream&gt;
+#include &lt;string&gt;
+using namespace std;
+
+int main () 
+{
+    string str = "C++ is best computer language";
+
+    string::size_type cap;
+    cap = <B>str.capacity</B>();
+
+    cout &lt;&lt; "Capacity of str is: " &lt;&lt; cap &lt;&lt; endl;
+    cout &lt;&lt; "Size of str is    : " &lt;&lt; str.size() 
+         &lt;&lt; endl;
+    cout &lt;&lt; "Length of str is  : " &lt;&lt; str.length() 
+         &lt;&lt; endl;
+
+    cout &lt;&lt; "Resize the str for 50 character" &lt;&lt; endl;
+    str.resize(50);
+    cap = <B>str.capacity</B>();
+    
+    cout &lt;&lt; "Capacity of str is: " &lt;&lt; cap &lt;&lt; endl;
+    cout &lt;&lt; "Size of str is    : " &lt;&lt; str.size() 
+         &lt;&lt; endl;
+    cout &lt;&lt; "Length of str is  : " &lt;&lt; str.length() 
+         &lt;&lt; endl;
+
+    return 0;
+}
+<B>OUTPUT:</B>
+<SPAN class=green>// Capacity of str is: 32
+// Size of str is    : 29
+// Length of str is  : 29
+// Resize the str for 50 character
+// Capacity of str is: 64
+// Size of str is    : 50
+// Length of str is  : 50</SPAN>
+
+
+<SPAN class=blue><A name=compare>compare 1.</A></SPAN>
+<HR>
+#include &lt;iostream&gt;
+#include &lt;string&gt;
+using namespace std;
+
+int main () 
+{
+    string str1 = "string";
+    string str2 = "String";
+    string str3 = "second string";
+    char ch[]   = "first string";
+
+    cout &lt;&lt; "string str1 is : " &lt;&lt; str1 &lt;&lt; endl;
+    cout &lt;&lt; "string str2 is : " &lt;&lt; str2 &lt;&lt; endl;
+    cout &lt;&lt; "char ary ch is : " &lt;&lt; ch   &lt;&lt; endl;
+    cout &lt;&lt; "string str3 is : " &lt;&lt; str3 &lt;&lt; endl;
+    cout &lt;&lt; endl;
+
+    <SPAN class=green>// compare str1 and str2</SPAN>
+    cout &lt;&lt; "1." &lt;&lt; endl;
+    size_t comp = <B>str1.compare</B>(str2);
+    cout &lt;&lt; "String str1 is ";
+    ( comp == 0 ) ? cout &lt;&lt; "equal" : cout 
+         &lt;&lt; "not equal";
+    cout &lt;&lt; " to string str2" &lt;&lt; endl;
+
+    <SPAN class=green>// compare str1 and literal string "string"</SPAN>
+    cout &lt;&lt; "2." &lt;&lt; endl;
+    comp = <B>str1.compare</B>("string");
+    cout &lt;&lt; "String str1 is ";
+    ( comp == 0 ) ? cout &lt;&lt; "equal" : cout 
+        &lt;&lt; "not equal";
+    cout &lt;&lt; " to array of char \"string\"" &lt;&lt; endl;
+
+    <SPAN class=green>// 3. and 4. doesn't work with Microsoft 
+    // Visual Studio compiler</SPAN>
+	
+    <SPAN class=green>// compare str3 start from pos 7 to 5
+    // with str1</SPAN>
+    cout &lt;&lt; "3." &lt;&lt; endl;
+    comp = <B>str3.compare</B>(str1,7,5);
+    cout &lt;&lt; "Part of string str3 is ";
+    ( comp == 0 ) ? cout &lt;&lt; "equal" : cout 
+        &lt;&lt; "not equal";
+    cout &lt;&lt; " to str1" &lt;&lt; endl;
+
+    <SPAN class=green>// compare str3 start from pos 7
+    // with literal string "string"</SPAN>
+    cout &lt;&lt; "4." &lt;&lt; endl;
+    comp = <B>str3.compare</B>("string",7);
+    cout &lt;&lt; "Part of string str3 is ";
+    ( comp == 0 ) ? cout &lt;&lt; "equal" : cout 
+        &lt;&lt; "not equal";
+    cout &lt;&lt; " to C string \"string\"" &lt;&lt; endl;
+
+    <SPAN class=green>// next 4 'compare' functions
+    // doesn't work with GNU compiler</SPAN>
+	
+    cout &lt;&lt; "5." &lt;&lt; endl;
+    comp = <B>str1.compare</B>(6,10,ch);
+    cout &lt;&lt; "String str1 is ";
+    ( comp == 0 ) ? cout &lt;&lt; "equal" : cout 
+    &lt;&lt; "not equal";
+    cout &lt;&lt; " to part of char ary \"first string\"" 
+    &lt;&lt; endl;
+
+    cout &lt;&lt; "6." &lt;&lt; endl;
+    comp = <B>str1.compare</B>(0,3,str3);
+    cout &lt;&lt; "Part of str1 is ";
+    ( comp == 0 ) ? cout &lt;&lt; "equal" : cout 
+    &lt;&lt; "not equal";
+    cout &lt;&lt; " to string \"second string\"" 
+    &lt;&lt; endl;
+
+    cout &lt;&lt; "7." &lt;&lt; endl;
+    comp = <B>str1.compare</B>(1,3,str2,1,3);
+    cout &lt;&lt; "String str1 is ";
+    ( comp == 0 ) ? cout &lt;&lt; "equal" : cout 
+    &lt;&lt; "not equal";
+    cout &lt;&lt; " to part of string \"second string\"" 
+    &lt;&lt; endl;
+
+    cout &lt;&lt; "8." &lt;&lt; endl;
+    comp = <B>str1.compare</B>(1,3,str2,1,3);
+    cout &lt;&lt; "String str1 is ";
+    ( comp == 0 ) ? cout &lt;&lt; "equal" : cout 
+    &lt;&lt; "not equal";
+    cout &lt;&lt; " to part of string \"second string\"" 
+    &lt;&lt; endl;
+
+    return 0;
+}
+<B>OUTPUT:</B> <SPAN class=green>GNU compiler</SPAN>
+// string str1 is : string
+// string str2 is : String
+// char ary ch is : first string
+// string str3 is : second string
+// 
+// 1.
+// String str1 is not equal to string str2
+// 2.
+// String str1 is equal to array of char "string"
+// 3.
+// Part of string str3 is equal to str1
+// 4.
+// Part of string str3 is equal to C string "string"
+// <SPAN class=blue><B>5.</B></SPAN>
+// <SPAN class=blue><B>6.</B></SPAN>
+// <SPAN class=blue><B>7.</B></SPAN>
+// <SPAN class=blue><B>8.</B></SPAN>
+
+<B>OUTPUT:</B> <SPAN class=green>Microsoft Visual Studio compiler</SPAN>
+// string str1 is : string
+// string str2 is : String
+// char ary ch is : first string
+// string str3 is : second string
+//
+// 1.
+// String str1 is not equal to string str2
+// 2.
+// String str1 is equal to array of char "string"
+// <SPAN class=blue><B>3.</B></SPAN>
+// <SPAN class=blue><B>4.</B></SPAN>
+// 5.
+// String str1 is not equal to part of char ary "first
+// string"
+// 6.
+// Part of str1 is not equal to string "second string"
+// 7.
+// String str1 is equal to part of string "second string"
+// 8.
+// String str1 is equal to part of string "second string"
+// Press any key to continue
+
+
+<SPAN class=blue><A target=str_intro name=copy>copy 1.</A></SPAN>
+<HR>
+#include &lt;iostream&gt;
+#include &lt;string&gt;
+using namespace std;
+
+int main () 
+{
+    string str = "First Name: Robert";
+    char fname[255];
+    cout &lt;&lt; "str is: " &lt;&lt; str &lt;&lt; endl;
+
+    int n = str.find(':');
+
+    <B>str.copy</B>(fname, <SPAN class=green>// copy to array</SPAN>
+            n+1,    <SPAN class=green>// how many char</SPAN>
+            0);     <SPAN class=green>// start position from str</SPAN>
+    
+    <SPAN class=green>// must terminate fname with '\0';</SPAN>
+    fname[n+1] = 0;
+    
+    cout &lt;&lt; "fname is: " &lt;&lt; fname &lt;&lt; endl;
+
+    return 0;
+}
+<B>OUTPUT:</B>
+<SPAN class=green>// str is: First Name: Robert
+// fname is: First Name:</SPAN>
+
+
+<SPAN class=blue><A target=str_intro name=empty>empty 1.</A></SPAN>
+<HR>
+#include &lt;iostream&gt;
+#include &lt;string&gt;
+using namespace std;
+
+int main () 
+{
+    string str = "*******";
+
+    while ( ! <B>str.empty</B>() )
+    {
+    	cout &lt;&lt; str &lt;&lt; endl;
+    	str.erase(str.end()-1);
+    }
+    cout &lt;&lt; endl;
+
+    return 0;
+}
+<B>OUTPUT:</B>
+<SPAN class=green>// *******
+// ******
+// *****
+// ****
+// ***
+// **
+// *</SPAN>
+
+
+<SPAN class=blue><A target=str_intro name=end>end 1.</A></SPAN>
+<HR>
+<DIV class=green>// returns an iterator porsitioned immediately
+// after the last character in string</DIV>
+#include &lt;iostream&gt;
+#include &lt;string&gt;
+using namespace std;
+
+int main () 
+{
+    string s;
+    string str = "*************************";
+    size_t pos = str.length();
+
+    while ( pos )
+    {
+    	s.assign ( <B>str.begin</B>(),<B>str.end</B>() - pos+1);
+    	cout &lt;&lt; s &lt;&lt; endl;
+    	pos -= 5;
+    }
+
+    return 0;
+}
+<B>OUTPUT:</B>
+<SPAN class=green>// *
+// ******
+// ***********
+// ****************
+// *********************</SPAN>
+
+
+<SPAN class=blue><A target=str_intro name=erase>erase 1.</A></SPAN>
+<HR>
+#include &lt;iostream&gt;
+#include &lt;string&gt;
+#include &lt;algorithm&gt;
+using namespace std;
+
+int main () 
+{
+    string str, s;
+
+    for ( char ch = 'a'; ch &lt;= 'z'; ch++ )
+        str.append(1,ch);
+    s = str;
+    cout &lt;&lt; "str is: " &lt;&lt; str &lt;&lt; endl;
+    cout &lt;&lt; "s   is: " &lt;&lt; str &lt;&lt; endl;
+    
+    <SPAN class=green>// removes 13 characters from the beginning</SPAN>
+    <B>str.erase</B>(0,13);
+    cout &lt;&lt; "Erased range fron str : " &lt;&lt; str &lt;&lt; endl; 
+    <SPAN class=green>// removes 13 characters starts from 14</SPAN>
+    str = <B>s.erase</B>(13,13);
+    cout &lt;&lt; "Erased range from s   : " &lt;&lt; str &lt;&lt; endl;
+
+    <SPAN class=green>// removes one character pointed by s.begin()</SPAN>
+    cout &lt;&lt; endl &lt;&lt; "Erase one, second character from s"
+         &lt;&lt; endl;
+    <B>s.erase</B>(s.begin()+1);
+    cout &lt;&lt; "s     is: " &lt;&lt; s &lt;&lt; endl;
+    
+    <SPAN class=green>// removes range of characters</SPAN>
+    s.<B>erase</B>(s.begin(),s.begin()+4);
+    cout &lt;&lt; "s     is: " &lt;&lt; s &lt;&lt; endl;
+
+    return 0;
+}
+<B>OUTPUT:</B>
+<SPAN class=green>// str is: abcdefghijklmnopqrstuvwxyz
+// s   is: abcdefghijklmnopqrstuvwxyz
+// Erased range fron str : nopqrstuvwxyz
+// Erased range from s   : abcdefghijklm
+// 
+// Erase one, second character from s
+// s     is: acdefghijklm
+// s     is: fghijklm</SPAN>
+
+
+<SPAN class=blue><A target=str_intro name=find>find 1.</A></SPAN>
+<HR>
+#include &lt;iostream&gt;
+#include &lt;string&gt;
+#include &lt;algorithm&gt;
+using namespace std;
+
+int main () 
+{
+    string  str("C++ is best language");
+    int pos1, pos2; <SPAN class=green>// size_t or size_type</SPAN> 
+                    <SPAN class=green>// work not correct</SPAN>
+    <SPAN class=green>// search for first string "best" inside of str
+    // default position is 0</SPAN>
+    pos1 = <B>str.find</B> ("best");
+    cout &lt;&lt; "Word best is found on position " &lt;&lt; pos1+1 
+         &lt;&lt; endl;
+    
+    <SPAN class=green>// if pattern is not found - return -1</SPAN>
+    pos2 = <B>str.find</B> ("best",pos1+1);
+    cout &lt;&lt; "Word best is found on position " &lt;&lt; pos2+1 
+         &lt;&lt; endl;
+
+    <SPAN class=green>// search for first occurrence of character</SPAN>
+    pos1 = <B>str.find</B>('g');
+    cout &lt;&lt; "First character 'g' found on position " 
+         &lt;&lt; pos1
+    	 &lt;&lt; endl;
+
+    <SPAN class=green>// search for first occurrence of string</SPAN>
+    string s = "is";
+    pos1 = <B>str.find</B> (s);
+    cout &lt;&lt; "Word 'is' is found on position " &lt;&lt; pos1+1 
+         &lt;&lt; endl;
+    
+    return 0;
+}
+<B>OUTPUT:</B>
+<SPAN class=green>// Word best is found on position 8
+// Word best is found on position 0
+// First character 'g' found on position 15
+// Word 'is' is found on position 5</SPAN>
+
+
+<SPAN class=blue><A target=str_intro name=find_first_not_of>find_first_not_of 1.</A></SPAN>
+<HR>
+#include &lt;iostream&gt;
+#include &lt;string&gt;
+using namespace std;
+
+int main () 
+{
+    string  str("C++ is best language");
+    cout &lt;&lt; "str is: " &lt;&lt; str &lt;&lt; endl;
+
+    int n = <B>str.find_first_not_of</B>("aeiouAEIOU");
+
+    cout &lt;&lt; "First consonant found at " &lt;&lt; n+1
+    	 &lt;&lt; " position" &lt;&lt; endl;
+    
+    return 0;
+}
+<B>OUTPUT:</B>
+<SPAN class=green>// str is: C++ is best language
+// First consonant found at 1 position</SPAN>
+
+
+<SPAN class=blue>find_first_not_of 2.</SPAN>
+<HR>
+#include &lt;iostream&gt;
+#include &lt;string&gt;
+using namespace std;
+
+int main () 
+{
+    string  str("C++ is best language");
+    cout &lt;&lt; "str is: " &lt;&lt; str &lt;&lt; endl;
+
+    <SPAN class=green>// search first not ' ',
+    // start from position 7</SPAN>
+    int n = <B>str.find_first_not_of</B>(' ',7);
+    cout &lt;&lt; "first not of space character "
+    	 &lt;&lt; "found at position " &lt;&lt; n+1 &lt;&lt; endl;
+    
+    return 0;
+}
+<B>OUTPUT:</B>
+<SPAN class=green>// str is: C++ is best language
+// first not of space character found at position 8</SPAN>
+
+
+<SPAN class=blue>find_first_not_of 3.</SPAN>
+<HR>
+#include &lt;iostream&gt;
+#include &lt;string&gt;
+using namespace std;
+
+int main () 
+{
+    string  str("C++ is best language");
+    string  s = "C++";
+    
+    cout &lt;&lt; "str is: " &lt;&lt; str &lt;&lt; endl;
+    
+    <SPAN class=green>// search character from pattern 
+    // using the first x chåracters in pattern.
+    // the value position must be given</SPAN>
+    int n = <B>str.find_first_not_of</B>("CBCD",0,3);
+    cout &lt;&lt; "first not 'C' is found at position "
+    	 &lt;&lt; n+1 &lt;&lt; endl;
+    
+    <SPAN class=green>// search first not of 
+    // pattern is string</SPAN>
+    n = <B>str.find_first_not_of</B>(s);
+    cout &lt;&lt; "first not of C++ is found "
+    	 &lt;&lt; "at position " &lt;&lt; n+1 &lt;&lt; endl;
+    
+    return 0;
+}
+<B>OUTPUT:</B>
+<SPAN class=green>// str is: C++ is best language
+// first not 'C' is found at position 2
+// first not of C++ is found at position 4</SPAN>
+
+
+<SPAN class=blue><A target=str_intro name=find_first_of>find_first_of 1.</A></SPAN>
+<HR>
+#include &lt;iostream&gt;
+#include &lt;string&gt;
+using namespace std;
+
+int main () 
+{
+    string  str("C++ is best language");
+    string  s = "be";
+    
+    cout &lt;&lt; "str is: " &lt;&lt; str &lt;&lt; endl;
+
+    <SPAN class=green>// search be start from position 2
+    // if position is ommited - default is 0</SPAN>
+    int n = <B>str.find_first_of</B>(s,2);
+    cout &lt;&lt; "first 'be' found at position "
+    	 &lt;&lt; n+1 &lt;&lt; endl;
+
+    <SPAN class=green>// same as above but search for character</SPAN>
+    n = <B>str.find_first_of</B>('l');
+    cout &lt;&lt; "first character 'l' found at "
+    	 &lt;&lt; "position " &lt;&lt; n+1 &lt;&lt; endl;
+
+    <SPAN class=green>// search 'first of' for the characters in
+    // charary</SPAN>
+    char charary[] = " bea";
+    cout &lt;&lt; "charary[] = \" bea\"" &lt;&lt; endl;
+    n = <B>str.find_first_of</B>(charary,0);
+    cout &lt;&lt; "first character from charary "
+    	 &lt;&lt; "found at position " &lt;&lt; n+1 &lt;&lt; endl;
+    cout &lt;&lt; "Note: position 4 is space" &lt;&lt; endl;
+
+    <SPAN class=green>// same as above but third argumen is
+    // number of character from which searching
+    // starts
+    // this variant of find_first_of dosn't
+    // work properly with GNU compiler</SPAN>
+    n = <B>str.find_first_of</B>(" bae",0,3);
+    cout &lt;&lt; "first character from charary "
+    	 &lt;&lt; "found at position " &lt;&lt; n+1 &lt;&lt; endl;
+
+    return 0;
+}
+<B>OUTPUT:</B>
+<SPAN class=green>// str is: C++ is best language
+// first 'be' found at position 8
+// first character 'l' found at position 13
+// charary[] = " bea"
+// first character from charary found at position 4
+// Note: position 4 is space
+// first character from charary found at position 4</SPAN>
+
+
+<SPAN class=blue><A target=str_intro name=find_last_not_of>find_last_not_of 1.</A></SPAN>
+<HR>
+#include &lt;iostream&gt;
+#include &lt;string&gt;
+using namespace std;
+
+int main () 
+{
+    string  str("C++ is best language");
+    string  s  = "langue";
+    int pos = str.length()-1;
+    cout &lt;&lt; "str is: " &lt;&lt; str &lt;&lt; endl;
+    
+    <SPAN class=green>// returns the highest position &lt;= pos of a character
+    // in str that does not match any charcter in s; 
+    // returns nopos if there  is  no such position:
+    // npos is the default value for pos</SPAN>
+    int n =  <B>str.find_last_not_of</B>(s, pos);
+    cout &lt;&lt; "last_not_of 'langue' found at position "
+    	 &lt;&lt; n+1 &lt;&lt; endl;
+
+    <SPAN class=green>// same as above but search for single character</SPAN>
+    n = <B>str.find_last_not_of</B>('e');
+    cout &lt;&lt; "last_not_of 'e' found at position "
+    	 &lt;&lt; n+1 &lt;&lt; endl;
+
+    char ary[] = "be";
+    <SPAN class=green>// seawrch for occurence last_not_of
+    // from pattern ary in str</SPAN>
+    n = <B>str.find_last_not_of</B>(ary);
+    cout &lt;&lt; "last_not_of 'be' found at position "
+    	 &lt;&lt; n+1 &lt;&lt; endl;
+    
+    return 0;
+}
+<B>OUTPUT:</B>
+<SPAN class=green>// str is: C++ is best language
+// last_not_of 'langue' found at position 12
+// last_not_of 'e' found at position 19
+// last_not_of 'be' found at position 19</SPAN>
+
+
+<SPAN class=blue><A target=str_intro name=find_last_of>find_last_of 1.</A></SPAN>
+<HR>
+#include &lt;iostream&gt;
+#include &lt;string&gt;
+using namespace std;
+
+int main () 
+{
+    string  str("C++ is best language");
+    string  s  = "g";
+    cout &lt;&lt; "str is: " &lt;&lt; str &lt;&lt; endl;
+    cout &lt;&lt; "s   is: " &lt;&lt; s   &lt;&lt; endl;
+
+ 	int n = <B>str.find_last_of</B>(s);
+ 	cout &lt;&lt; "last_of '" &lt;&lt; s &lt;&lt; "' faund"
+ 		 &lt;&lt; " at position " &lt;&lt; n+1 &lt;&lt; endl;
+
+    n = <B>str.find_last_of</B>(' ');
+    cout &lt;&lt; "last_of ' ' faund"
+    	 &lt;&lt; " at position " &lt;&lt; n+1 &lt;&lt; endl;
+
+    n = <B>str.find_last_of</B>(" la");
+    cout &lt;&lt; "last_of \" la\" faund"
+    	 &lt;&lt; " at position " &lt;&lt; n+1 &lt;&lt; endl;
+    
+    return 0;
+}
+<B>OUTPUT:</B>
+<SPAN class=green>// str is: C++ is best language
+// s   is: g
+// last_of 'g' faund at position 19
+// last_of ' ' faund at position 12
+// last_of " la" faund at position 18</SPAN>
+
+
+<SPAN class=blue><A name=insert>insert 1.</A></SPAN>
+<HR>
+#include &lt;iostream&gt;
+#include &lt;string&gt;
+using namespace std;
+
+int main () 
+{
+    string str = "C++ language";
+    string s   = "is best";
+    char ch[]  = "C++ language";
+    
+    cout &lt;&lt; "str is: " &lt;&lt; str &lt;&lt; endl;
+    cout &lt;&lt; "s   is: " &lt;&lt; s   &lt;&lt; endl;
+    cout &lt;&lt; "ch  is: " &lt;&lt; s   &lt;&lt; endl;
+    
+    <SPAN class=green>// insert a copy of s into str
+    // at position pos;</SPAN>
+    string::size_type pos = 4;
+    <B>str.insert</B>(pos,s);
+    cout &lt;&lt; "str is: " &lt;&lt; str &lt;&lt; endl;
+    
+    <SPAN class=green>// insert a copy of ch into str at
+    // the position specified by iterator
+    // return an iterator positioned at
+    // this copy</SPAN>
+    int n = str.find('l');
+    <B>str.insert</B>(str.begin() + n,' ');
+    cout &lt;&lt; "str is: " &lt;&lt; str &lt;&lt; endl;
+    
+    <SPAN class=green>// like above but n x copies of char</SPAN>
+    <B>str.insert</B>(str.end(),3,'!');
+    cout &lt;&lt; "str is: " &lt;&lt; str &lt;&lt; endl;
+    
+    <SPAN class=green>// insert 4 char from ch into s
+    // at the position 0</SPAN>
+    <B>s.insert</B>(0,ch,4);
+    cout &lt;&lt; "s   is: " &lt;&lt; s   &lt;&lt; endl;
+    
+    <SPAN class=green>// insert 8 characters from str
+    // start from position n ('langu...')
+    // into s at position x (end string)</SPAN>
+    n = str.find('l');
+    int x = s.length();
+    <B>s.insert</B>(x,str,n,8);
+    cout &lt;&lt; "s   is: " &lt;&lt; s   &lt;&lt; endl;
+    
+    n = s.find('l');
+    <B>s.insert</B>(s.begin()+n,' ');
+    cout &lt;&lt; "s   is: " &lt;&lt; s   &lt;&lt; endl;
+    
+    <SPAN class=green>// insert range (begin - begin+7) of str 
+    // into s at position begin+4</SPAN>
+    <B>s.insert</B>(s.begin()+4,str.begin(),str.begin()+7);
+    cout &lt;&lt; "s   is: " &lt;&lt; s   &lt;&lt; endl;
+    return 0;
+}
+<B>OUTPUT:</B>
+<SPAN class=green>// str is: C++ language
+// s   is: is best
+// ch  is: is best
+// str is: C++ is bestlanguage
+// str is: C++ is best language
+// str is: C++ is best language!!!
+// s   is: C++ is best
+// s   is: C++ is bestlanguage
+// s   is: C++ is best language
+// s   is: C++ C++ is is best language</SPAN>
+
+
+<SPAN class=blue><A name=length>length 1.</A></SPAN>
+<HR>
+#include &lt;iostream&gt;
+#include &lt;string&gt;
+using namespace std;
+
+int main () 
+{
+    string str = "C++ is best computer language";
+    cout &lt;&lt; "str is: " &lt;&lt; str &lt;&lt; endl;
+    
+    cout &lt;&lt; "Length of str is : "
+         &lt;&lt; <B>str.length</B>() &lt;&lt; endl;
+    
+    return 0;
+}
+<B>OUTPUT:</B>
+<SPAN class=green>// str is: C++ is best computer language
+// Length of str is : 29</SPAN>
+
+
+<SPAN class=blue><A name=max_size>max_size 1.</A></SPAN>
+<HR>
+<DIV class=green>// returns a reverse iterator positioned
+// at the last character in string</DIV>
+
+#include &lt;iostream&gt;
+#include &lt;string&gt;
+using namespace std;
+
+int main () 
+{
+    string str = "C++ is best computer language";
+    cout &lt;&lt; "str is: " &lt;&lt; str &lt;&lt; endl;
+
+    cout &lt;&lt; "max_size of str is: "
+         &lt;&lt; <B>str.max_size</B>() &lt;&lt; endl;
+
+    return 0;
+}
+<B>OUTPUT:</B>
+<SPAN class=green>// str is: C++ is best computer language
+// max_size of str is: 4294967294</SPAN>
+
+
+<SPAN class=blue><A name=rbegin>rbegin 1.</A></SPAN>
+<HR>
+#include &lt;iostream&gt;
+#include &lt;string&gt;
+using namespace std;
+
+int main () 
+{
+    string str = "C++ is best computer language";
+    cout &lt;&lt; "str is: " &lt;&lt; str &lt;&lt; endl;
+
+    <SPAN class=green>// usual iterator doesn't work</SPAN>
+    string::reverse_iterator It = <B>str.rbegin</B>();
+    while ( It != <B>str.rend()</B> )
+        cout &lt;&lt; *It++;
+    cout &lt;&lt; endl;
+
+    return 0;
+}
+<B>OUTPUT:</B>
+<SPAN class=green>// str is: C++ is best computer language
+// egaugnal retupmoc tseb si ++C</SPAN>
+
+
+<SPAN class=blue><A name=replace>replace 1.</A></SPAN>
+<HR>
+#include &lt;iostream&gt;
+#include &lt;string&gt;
+using namespace std;
+
+int main () 
+{
+    string str = "STL is created from Dennis Ritchie";
+    string s1  = "was";
+    string s2  = "developed";
+    string s3  = "Stepanov alexander";
+    cout &lt;&lt; "str is: " &lt;&lt; str &lt;&lt; endl;
+
+    cout &lt;&lt; "replace 'is' for 'was'" &lt;&lt; endl;
+    <B>str.replace</B>(4, <SPAN class=green>// start position in str</SPAN>
+            2,     <SPAN class=green>// how many characters</SPAN>
+            s1);   <SPAN class=green>// source for replasment</SPAN>
+    
+    cout &lt;&lt; "str is: " &lt;&lt; str &lt;&lt; endl;
+    
+    cout &lt;&lt;"replace 'created' for 'developed'" &lt;&lt; endl;
+    int n = str.find('c'); <SPAN class=green>// pos of 'created'</SPAN>
+    int x = str.find("from") -1;
+
+    <B>str.replace</B>(str.begin()+n,<SPAN class=green>// start pointer</SPAN>
+            str.begin()+x,    <SPAN class=green>// end pointer</SPAN>
+            s2);              <SPAN class=green>// source</SPAN>
+    
+    cout &lt;&lt; "str is: " &lt;&lt; str &lt;&lt; endl;
+
+    cout &lt;&lt; "replace 'Dennis' for 'alexander'" &lt;&lt; endl;</SPAN>
+    int x1 = str.find('D'); <SPAN class=green>// search Dennis</SPAN>
+    int x2 = str.find(' ',x1+1); <SPAN class=green>// space after</SPAN>
+    int y1 = s3.find("alex"); <SPAN class=green>// search 'alex'</SPAN>
+    int y2 = strlen("alexander");
+
+    <B>str.replace</B>(x1, <SPAN class=green>// start position in str</SPAN>
+            x2-x1,  <SPAN class=green>// how characters to replace</SPAN>
+            s3,     <SPAN class=green>// source for replacement</SPAN>
+            y1,     <SPAN class=green>// start positio from source</SPAN>
+            y2);    <SPAN class=green>// how chracter start from y1</SPAN>
+    
+    cout &lt;&lt; "str is: " &lt;&lt; str &lt;&lt; endl;
+
+    cout &lt;&lt; "replace 'from' for 'by'" &lt;&lt; endl;
+    char ary[] = "bytes";
+    n = str.find("from");
+
+    <SPAN class=green>// same variant possible with iterators
+    // instead of number of position</SPAN>
+    <B>str.replace</B>(n, <SPAN class=green>// start position in str</SPAN>
+            4,     <SPAN class=green>// how many characters</SPAN>
+            ary,   <SPAN class=green>// source</SPAN>
+            2);    <SPAN class=green>// first 2 characters from source</SPAN>
+    
+    cout &lt;&lt; "str is: " &lt;&lt; str &lt;&lt; endl;
+
+    cout &lt;&lt; "replace 'a' for 'A' (alexander)" &lt;&lt; endl;
+    n = str.find("alexander");
+
+    <B>str.replace</B>(n,  <SPAN class=green>// start position in str</SPAN>
+            1,      <SPAN class=green>// how character(s)</SPAN>
+            1,      <SPAN class=green>// how many copies of character</SPAN>
+            'A');   <SPAN class=green>// character for replasment</SPAN>
+    cout &lt;&lt; "str is: " &lt;&lt; str &lt;&lt; endl;
+
+    cout &lt;&lt; "replace 'Ritchie' for 'Stepanov'" &lt;&lt; endl;
+    x1 = str.find('R');
+    y1 = s3.find(' ');
+
+    <B>str.replace</B>(str.begin()+x1, <SPAN class=green>// start pointer</SPAN>
+            str.end(), <SPAN class=green>// to the end of str</SPAN>
+            s3.begin(), <SPAN class=green>// start pointer from source</SPAN>
+            s3.begin()+y1 <SPAN class=green>// end pointer from</SPAN>
+            );              <SPAN class=green>// source</SPAN>
+    cout &lt;&lt; "str is: " &lt;&lt; str &lt;&lt; endl;
+
+    return 0;
+}
+<B>OUTPUT:</B>
+<SPAN class=green>// str is: STL is created from Dennis Ritchie
+// replace 'is' for 'was'
+// str is: STL was created from Dennis Ritchie
+// replace 'created' for 'developed'
+// str is: STL was developed from Dennis Ritchie
+// replace 'Dennis' for 'alexander'
+// str is: STL was developed from alexander Ritchie
+// replace 'from' for 'by'
+// str is: STL was developed by alexander Ritchie
+// replace 'a' for 'A' (alexander)
+// str is: STL was developed by Alexander Ritchie
+// replace 'Ritchie' for 'Stepanov'
+// str is: STL was developed by Alexander Stepanov</SPAN>
+
+
+<SPAN class=blue><A name=reverse>reverse 1.</A></SPAN>
+<HR>
+#include &lt;iostream&gt;
+#include &lt;string&gt;
+using namespace std;
+
+int main () 
+{
+    string str = "Anatoliy Urbanskiy";
+    cout &lt;&lt; str.reverse() &lt;&lt; endl;
+
+    return 0;
+}
+<B>OUTPUT:</B>
+
+
+<SPAN class=blue><A name=resize>resize 1.</A></SPAN>
+<HR>
+<DIV class=green>// if  &lt;=s.size(),  truncates rightmost 
+// character in s to make it of size n; otherwise, adds
+// copies of character ch to end of s to increase it size
+// to n, or adds a default character value (usually a
+// blank) if ch is omitted; return type is void</DIV>
+
+#include &lt;iostream&gt;
+#include &lt;string&gt;
+using namespace std;
+
+int main () 
+{
+    string str = "Alexander Stepanov";
+    cout &lt;&lt; "str is: " &lt;&lt; str &lt;&lt; endl;
+    cout &lt;&lt; "size of str is: "
+         &lt;&lt; str.size() &lt;&lt; endl;
+
+    <B>str.resize</B>(11);
+
+    cout &lt;&lt; "after str.resize(11)" &lt;&lt; endl;
+    cout &lt;&lt; "str is: " &lt;&lt; str &lt;&lt; endl;
+    cout &lt;&lt; "size of str is: "
+         &lt;&lt; str.size() &lt;&lt; endl;
+
+    <B>str.resize</B>(20,'.');
+
+    cout &lt;&lt; "after str.resize(20,'.')" &lt;&lt; endl;
+    cout &lt;&lt; "str is: " &lt;&lt; str &lt;&lt; endl;
+    cout &lt;&lt; "size of str is: "
+         &lt;&lt; str.size() &lt;&lt; endl;
+
+    return 0;
+}
+<B>OUTPUT:</B>
+<SPAN class=green>// str is: Alexander Stepanov
+// size of str is: 18
+// after str.resize(11)
+// str is: Alexander S
+// size of str is: 11
+// after str.resize(9,'.')
+// str is: Alexander S.........
+// size of str is: 20</SPAN>
+
+
+<SPAN class=blue><A name=rfind>rfind 1.</A></SPAN>
+<HR>
+#include &lt;iostream&gt;
+#include &lt;string&gt;
+using namespace std;
+
+int main () 
+{
+    string str = "We go step by step to the target";
+    string s1  = "step";
+    cout &lt;&lt; "str is: " &lt;&lt; str &lt;&lt; endl;
+    cout &lt;&lt; "s1  is: " &lt;&lt; s1  &lt;&lt; endl;
+
+    cout &lt;&lt; "int n1 = str.find(s1)" &lt;&lt; endl;
+    int n1 = str.find(s1);
+    cout &lt;&lt; "n1 = " &lt;&lt; n1+1 &lt;&lt; endl;
+    
+    cout &lt;&lt; "int n2 = str.rfind(s1)" &lt;&lt; endl;
+    int n2 = <B>str.rfind</B>(s1);
+    cout &lt;&lt; "n2 = " &lt;&lt; n2+1 &lt;&lt; endl;
+    
+    cout &lt;&lt; "n3 = str.rfind(s1,n2-1)" &lt;&lt; endl;
+    int n3 = <B>str.rfind</B>(s1,n2-1);
+    cout &lt;&lt; "n3 = " &lt;&lt; n3+1 &lt;&lt; endl;
+
+    cout &lt;&lt; "n1 = str.rfind('t')" &lt;&lt; endl;
+    n1 = <B>str.rfind</B>('t');
+    cout &lt;&lt; "n1 = " &lt;&lt; n1+1 &lt;&lt; endl;
+    
+    cout &lt;&lt; "n2 = str.rfind('t',n1-1)" &lt;&lt; endl;
+    n2 = <B>str.rfind</B>('t',n1-1);
+    cout &lt;&lt; "n2 = " &lt;&lt; n2+1 &lt;&lt; endl;
+    
+    char ch[] = "step";
+    cout &lt;&lt; "char ch[] = \"step\"" &lt;&lt; endl;
+    cout &lt;&lt; "n1 = str.rfind(ch)" &lt;&lt; endl;
+    n1 = <B>str.rfind</B>(ch);
+    cout &lt;&lt; "n1 = " &lt;&lt; n1+1 &lt;&lt; endl;
+    
+    cout &lt;&lt; "n2 = str.rfind(\"stabc\",10,2)" &lt;&lt; endl;
+    n2 = <B>str.rfind</B>("stabc", <SPAN class=green>// pattern</SPAN>
+            10,             <SPAN class=green>// start position</SPAN>
+            2);             <SPAN class=green>// for first 2 char</SPAN>
+                            <SPAN class=green>// in pattern</SPAN>
+    cout &lt;&lt; "n2 = " &lt;&lt; n2+1 &lt;&lt; endl;
+    
+    return 0;
+}
+<B>OUTPUT:</B>
+<SPAN class=green>// str is: We go step by step to the target
+// s1  is: step
+// int n1 = str.find(s1)
+// n1 = 7
+// int n2 = str.rfind(s1)
+// n2 = 15
+// n3 = str.rfind(s1,n2-1)
+// n3 = 7
+// n1 = str.rfind('t')
+// n1 = 32
+// n2 = str.rfind('t',n1-1)
+// n2 = 27
+// char ch[] = "step"
+// n1 = str.rfind(ch)
+// n1 = 15
+// n2 = str.rfind("stabc",10,2)
+// n2 = 7</SPAN>
+
+
+<SPAN class=blue><A name=size>size 1.</A></SPAN>
+<HR>
+#include &lt;iostream&gt;
+#include &lt;string&gt;
+using namespace std;
+
+int main () 
+{
+    string str = "We go step by step to the target";
+    string::size_type size = <B>str.size</B>();
+
+    cout &lt;&lt; "str is: " &lt;&lt; str &lt;&lt; endl;
+    cout &lt;&lt; "size of str = " &lt;&lt; size &lt;&lt; endl;
+    
+    return 0;
+}
+<B>OUTPUT:</B>
+<SPAN class=green>// str is: We go step by step to the target
+// size of str = 32</SPAN>
+
+
+<SPAN class=blue><A name=substr>substr 1.</A></SPAN>
+<HR>
+<DIV class=green>// str.subsr(pos,n);
+// returns a copy of the substring consisting
+// of n characters from str, beginning at position pos
+// (default value 0); if n is too large or is omitted,
+// characters are copied only until the end of s is
+// reached</DIV>
+#include &lt;iostream&gt;
+#include &lt;string&gt;
+using namespace std;
+
+int main () 
+{
+    string str = "We go step by step to the target";
+    cout &lt;&lt; "str is: " &lt;&lt; str &lt;&lt; endl;
+
+    int n = str.find("step");
+    
+    string s = <B>str.substr</B>(n);
+    cout &lt;&lt; "s   is: " &lt;&lt; s &lt;&lt; endl;
+
+    s = <B>str.substr</B>(n,12);
+    cout &lt;&lt; "s   is: " &lt;&lt; s &lt;&lt; endl;
+    
+    return 0;
+}
+<B>OUTPUT:</B>
+<SPAN class=green>// str is: We go step by step to the target
+// s   is: step by step to the target
+// s   is: step by step</SPAN>
+
+
+<SPAN class=blue><A name=swap>swap 1.</A></SPAN>
+<HR>
+#include &lt;iostream&gt;
+#include &lt;string&gt;
+using namespace std;
+
+int main () 
+{
+    string str1 = "Robert";
+    string str2 = "Forest";
+    cout &lt;&lt; "str1 is: " &lt;&lt; str1 &lt;&lt; endl;
+    cout &lt;&lt; "str2 is: " &lt;&lt; str2 &lt;&lt; endl;
+    cout &lt;&lt; endl;
+
+    cout &lt;&lt; "str1.swap(str2)" &lt;&lt; endl;
+    cout &lt;&lt; endl;
+
+    <B>str1.swap</B>(str2);
+    cout &lt;&lt; "str1 is: " &lt;&lt; str1 &lt;&lt; endl;
+    cout &lt;&lt; "str2 is: " &lt;&lt; str2 &lt;&lt; endl;
+    
+    return 0;
+}
+<B>OUTPUT:</B>
+<SPAN class=green>// str1 is: Robert
+// str2 is: Forest
+// 
+// str1.swap(str2)
+// 
+// str1 is: Forest
+// str2 is: Robert</SPAN>
+
+</PRE></BODY></HTML>
